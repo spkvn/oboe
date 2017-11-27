@@ -1,7 +1,4 @@
 #include "Game.h"
-#include "Enemy.h"
-#include "Player.h"
-#include "InputHandler.h"
 
 Game* Game::s_pInstance = 0;
 

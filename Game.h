@@ -3,6 +3,9 @@
 #include <vector>
 #include <SDL2/SDL.h>
 #include "GameObject.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "InputHandler.h"
 
 class Game
 {
@@ -52,4 +55,5 @@ private:
 };
 
 typedef Game TheGame;
+
 #endif	// GAME_H

@@ -5,6 +5,8 @@
 #include <vector>
 #include <iostream>
 
+#include "Game.h"
+
 class InputHandler
 {
 public: 
@@ -16,7 +18,7 @@ public:
 	void initialiseJoysticks();
 	bool joysticksInitialised(){ return m_bJoysticksInitialised; }
 private:
-	InputHandler(); 
+	InputHandler() {} 
 	~InputHandler() {}
 
 	static InputHandler* s_pInstance;

@@ -1,5 +1,4 @@
 #include "InputHandler.h"
-#include "Game.h"
 
 //allocating & initializing InputHandler pointer.
 InputHandler* InputHandler::s_pInstance = 0;
@@ -54,7 +53,7 @@ void InputHandler::update()
 	{
 		if(event.type == SDL_QUIT)
 		{
-			TheGame::instance()->quit();
+			Game::instance()->quit();
 		}
 	}
 }
