@@ -14,6 +14,7 @@ public:
 	void update();
 	void handleEvents(); 
 	void clean(); 
+	void quit();
 
 	//private mutators
 	bool running();

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "InputHandler.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -10,10 +11,12 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 	{
 		m_bRunning =  initGlobals(title, xpos,ypos,height,width,flags);
 
+		TheInputHandler::instance()->initialiseJoysticks();
+
 		if(m_bRunning)
 		{
 			m_gameObjects.push_back(new Player(new LoaderParams(100,100,76,53,"animate")));
-			m_gameObjects.push_back(new Enemy(new LoaderParams(200,200,76,53,"animate"))); 
+			m_gameObjects.push_back(new Enemy(new LoaderParams(200,200,76,53,"animate")));
 
 			m_bRunning =  TheTextureManager::instance()->load("assets/doggy.png","animate", m_pRenderer);
 		}
@@ -51,24 +54,26 @@ void Game::update()
 
 void Game::handleEvents()
 {
+	TheInputHandler::instance()->update();
 	//do nothing yet
-	SDL_Event event;
-	if(SDL_PollEvent(&event))
-	{
-		switch(event.type)
-		{
-			case SDL_QUIT: 
-				m_bRunning = false; 
-				break;
+	// SDL_Event event;
+	// if(SDL_PollEvent(&event))
+	// {
+	// 	switch(event.type)
+	// 	{
+	// 		case SDL_QUIT:
+	// 			m_bRunning = false;
+	// 			break;
 
-			default:
-				break;
-		}
-	}
+	// 		default:
+	// 			break;
+	// 	}
+	// }
 }
 
 void Game::clean()
 {
+	TheInputHandler::instance()->clean();
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
@@ -82,11 +87,11 @@ bool Game::running()
 bool Game::initGlobals(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
 	m_pWindow = SDL_CreateWindow(
-		title, 
+		title,
 		xpos,
 		ypos,
 		height,
-		width, 
+		width,
 		flags
 	);
 
@@ -103,3 +108,7 @@ bool Game::initGlobals(const char* title, int xpos, int ypos, int height, int wi
 	return true;
 }
 
+void Game::quit()
+{
+	m_bRunning = false;
+}
