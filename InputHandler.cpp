@@ -10,6 +10,8 @@ InputHandler::InputHandler()
 	{
 		m_mouseButtonStates.push_back(false);
 	}
+
+	m_mousePosition = new Vector2D(0,0);
 }
 
 void InputHandler::initialiseJoysticks()
@@ -203,6 +205,12 @@ void InputHandler::update()		//Page 86.
 				m_mouseButtonStates[RIGHT] = false;
 			}
 		}
+
+		if(event.type = SDL_MOUSEMOTION)
+		{
+			m_mousePosition->setX(event.motion.x);
+			m_mousePosition->setY(event.motion.y);
+		}
 	}
 }
 
@@ -256,6 +264,10 @@ bool InputHandler::getButtonState(int joy, int buttonNumber)
 
 bool InputHandler::getMouseButtonState(int buttonNumber)
 {
-	// std::cout << "Checking state of mouse button " << buttonNumber << ": " << m_mouseButtonStates[buttonNumber] << std::endl;
 	return m_mouseButtonStates[buttonNumber];
+}
+
+Vector2D* InputHandler::getMousePosition()
+{
+	return m_mousePosition;
 }

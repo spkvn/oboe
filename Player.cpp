@@ -49,13 +49,16 @@ void Player::handleInput()
 		m_velocity.setY(1 * TheInputHandler::instance()->yvalue(0,2));
 	}
 
-	if( TheInputHandler::instance()->getMouseButtonState(LEFT))
-	{
-		m_velocity.setX(1);
-	}
-	else
-	{
-		std::cout << "L Mouse Up" << std::endl;
-		m_velocity.setX(-1);
-	}
+	Vector2D* vec = TheInputHandler::instance()->getMousePosition();
+	m_velocity = (*vec - m_position) / 100;
+	
+	// Starts moving right on click.
+	// if( TheInputHandler::instance()->getMouseButtonState(LEFT))
+	// {
+	// 	m_velocity.setX(1);
+	// }
+	// else
+	// {
+	// 	m_velocity.setX(0);
+	// }
 }

@@ -35,6 +35,9 @@ public:
 
 	// Mouse Button functions
 	bool getMouseButtonState(int buttonNumber);
+
+	// Mouse Motion functions
+	Vector2D* getMousePosition();
 private:
 	InputHandler();
 	~InputHandler() {}
@@ -43,6 +46,9 @@ private:
 
 	//Mouse Button Vars
 	std::vector<bool> m_mouseButtonStates; 
+
+	//Mouse Motion vars
+	Vector2D* m_mousePosition;
 
 	//Joystick Vars
 	std::vector<SDL_Joystick*> m_joysticks;
