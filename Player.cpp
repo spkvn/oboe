@@ -48,4 +48,14 @@ void Player::handleInput()
 	{
 		m_velocity.setY(1 * TheInputHandler::instance()->yvalue(0,2));
 	}
+
+	if( TheInputHandler::instance()->getMouseButtonState(LEFT))
+	{
+		m_velocity.setX(1);
+	}
+	else
+	{
+		std::cout << "L Mouse Up" << std::endl;
+		m_velocity.setX(-1);
+	}
 }

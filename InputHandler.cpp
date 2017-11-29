@@ -3,6 +3,15 @@
 //allocating & initializing InputHandler pointer.
 InputHandler* InputHandler::s_pInstance = 0;
 
+InputHandler::InputHandler()
+{
+	//Handle Mouse buttons (left, mid, right)
+	for(int i = 0; i < 3; i++)
+	{
+		m_mouseButtonStates.push_back(false);
+	}
+}
+
 void InputHandler::initialiseJoysticks()
 {
 	if(SDL_WasInit(SDL_INIT_JOYSTICK) == 0)
@@ -152,6 +161,48 @@ void InputHandler::update()		//Page 86.
 			int whichOne = event.jaxis.which; 
 			m_buttonStates[whichOne][event.jbutton.button] = false;
 		}
+
+		if(event.type = SDL_MOUSEBUTTONDOWN)
+		{
+			if(event.button.button == SDL_BUTTON_LEFT)
+			{
+				// std::cout << "Left button down" << std::endl;
+				m_mouseButtonStates[LEFT] = true; 
+			}
+
+			if(event.button.button == SDL_BUTTON_MIDDLE)
+			{
+				// std::cout << "Middle button down" << std::endl;
+				m_mouseButtonStates[MIDDLE] = true;
+			}
+
+			if(event.button.button == SDL_BUTTON_RIGHT)
+			{
+				// std::cout << "Right button down" << std::endl;
+				m_mouseButtonStates[RIGHT] = true;
+			}
+		} 
+
+		if(event.type = SDL_MOUSEBUTTONUP)
+		{
+			if(event.button.button == SDL_BUTTON_LEFT)
+			{
+				// std::cout << "Left button up" << std::endl;
+				m_mouseButtonStates[LEFT] = false; 
+			}
+
+			if(event.button.button == SDL_BUTTON_MIDDLE)
+			{
+				// std::cout << "Middle button up" << std::endl;
+				m_mouseButtonStates[MIDDLE] = false;
+			}
+
+			if(event.button.button == SDL_BUTTON_RIGHT)
+			{
+				// std::cout << "Right button up" << std::endl;
+				m_mouseButtonStates[RIGHT] = false;
+			}
+		}
 	}
 }
 
@@ -201,4 +252,10 @@ InputHandler* InputHandler::instance()
 bool InputHandler::getButtonState(int joy, int buttonNumber)
 {
 	return m_buttonStates[joy][buttonNumber];
+}
+
+bool InputHandler::getMouseButtonState(int buttonNumber)
+{
+	// std::cout << "Checking state of mouse button " << buttonNumber << ": " << m_mouseButtonStates[buttonNumber] << std::endl;
+	return m_mouseButtonStates[buttonNumber];
 }
