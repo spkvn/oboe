@@ -38,6 +38,10 @@ public:
 
 	// Mouse Motion functions
 	Vector2D* getMousePosition();
+
+	// Keyboard Button functions 
+	bool isKeyDown(SDL_Scancode key);
+
 private:
 	InputHandler();
 	~InputHandler() {}
@@ -49,6 +53,9 @@ private:
 
 	//Mouse Motion vars
 	Vector2D* m_mousePosition;
+
+	//Keyboard Button Vars
+	const Uint8* m_keyStates;
 
 	//Joystick Vars
 	std::vector<SDL_Joystick*> m_joysticks;

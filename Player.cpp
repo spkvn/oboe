@@ -49,8 +49,9 @@ void Player::handleInput()
 		m_velocity.setY(1 * TheInputHandler::instance()->yvalue(0,2));
 	}
 
-	Vector2D* vec = TheInputHandler::instance()->getMousePosition();
-	m_velocity = (*vec - m_position) / 100;
+	// Have Player follow mouse.
+	// Vector2D* vec = TheInputHandler::instance()->getMousePosition();
+	// m_velocity = (*vec - m_position) / 100;
 	
 	// Starts moving right on click.
 	// if( TheInputHandler::instance()->getMouseButtonState(LEFT))
@@ -61,4 +62,21 @@ void Player::handleInput()
 	// {
 	// 	m_velocity.setX(0);
 	// }
+
+	if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_W))
+	{
+		m_velocity.setY(-2);
+	}
+	if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_S))
+	{
+		m_velocity.setY(2);
+	}
+	if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_D))
+	{
+		m_velocity.setX(2);
+	}
+	if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_A))
+	{
+		m_velocity.setX(-2);
+	}
 }
