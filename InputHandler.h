@@ -65,6 +65,21 @@ private:
 
 	//JoyStick button Vars 
 	std::vector<std::vector<bool>> m_buttonStates; 
+
+
+	// Handle Keyboard Events
+	void onKeyDown();
+	void onKeyUp();
+
+	// Handle Mouse Events
+	void onMouseMove(SDL_Event& event);
+	void onMouseButtonDown(SDL_Event& event);
+	void onMouseButtonUp(SDL_Event& event);
+
+	// Handle Joystick Events
+	void onJoystickAxisMove(SDL_Event& event);
+	void onJoystickButtonDown(SDL_Event& event);
+	void onJoystickButtonUp(SDL_Event& event);
 };
 
 //defining singleton
