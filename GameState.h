@@ -1,6 +1,7 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
 #include <string>
+#include <iostream>
 
 //Abstract Base Class.
 class GameState

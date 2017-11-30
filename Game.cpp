@@ -14,8 +14,8 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 		{
 			m_pGameStateMachine = new GameStateMachine(); 
 			m_pGameStateMachine->changeState(new MenuState());
-			m_gameObjects.push_back(new Player(new LoaderParams(100,100,76,53,"animate")));
-			m_gameObjects.push_back(new Enemy(new LoaderParams(200,200,76,53,"animate")));
+			// m_gameObjects.push_back(new Player(new LoaderParams(100,100,76,53,"animate")));
+			// m_gameObjects.push_back(new Enemy(new LoaderParams(200,200,76,53,"animate")));
 
 			m_bRunning =  TheTextureManager::instance()->load("assets/doggy.png","animate", m_pRenderer);
 		}

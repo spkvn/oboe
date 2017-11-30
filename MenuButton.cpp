@@ -5,12 +5,12 @@ MenuButton::MenuButton(const LoaderParams* pParams) : SDLGameObject(pParams)
 	m_currentFrame = MOUSE_OUT; //start at frame 2, because I've got my sprites backwards;
 }
 
-MenuButton::draw()
+void MenuButton::draw()
 {
 	SDLGameObject::draw(); // use base class drawing
 }
 
-MenuButton::update()
+void MenuButton::update()
 {
 	Vector2D* pMousePos = TheInputHandler::instance()->getMousePosition(); 
 
@@ -21,7 +21,7 @@ MenuButton::update()
 	{
 		m_currentFrame = MOUSE_OVER; 
 
-		if(TheInputHandler::instance->getMouseButtonState(LEFT))
+		if(TheInputHandler::instance()->getMouseButtonState(LEFT))
 		{
 			m_currentFrame = CLICKED;
 		}

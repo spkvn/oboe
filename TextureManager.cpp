@@ -46,7 +46,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width,  int hei
 	SDL_Rect srcRect;
 	SDL_Rect destRect; 
 
-	srcRect.x = currentFrame; 
+	srcRect.x = currentFrame * width; 
 	srcRect.y = height * (currentRow - 1);
 	srcRect.w = destRect.w = width; 
 	srcRect.h = destRect.h = height;
@@ -65,4 +65,9 @@ TextureManager* TextureManager::instance()
 	}
 
 	return s_pInstance;
+}
+
+void TextureManager::clearFromTextureMap(std::string id)
+{
+	m_textureMap.erase(id);
 }
