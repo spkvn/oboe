@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project 
-OBJS = main.cpp Game.cpp Player.cpp Enemy.cpp SDLGameObject.cpp TextureManager.cpp Vector2D.cpp InputHandler.cpp 
+OBJS = main.cpp Game.cpp Player.cpp Enemy.cpp SDLGameObject.cpp TextureManager.cpp Vector2D.cpp InputHandler.cpp MenuState.cpp PlayState.cpp
 
 #CC specifies which compiler we're using 
 CC = g++ 
@@ -12,7 +12,7 @@ COMPILER_FLAGS = -w
 LINKER_FLAGS = -lSDL2 -lSDL2_image
 
 #OBJ_NAME specifies the name of our exectuable 
-OBJ_NAME = Movement
+OBJ_NAME = chapter5Executable
 
 #This is the target that compiles our executable 
 all : $(OBJS) 
