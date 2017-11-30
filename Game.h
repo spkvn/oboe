@@ -6,6 +6,9 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "InputHandler.h"
+#include "GameStateMachine.h"
+#include "PlayState.h"
+#include "MenuState.h"
 
 class Game
 {
@@ -52,6 +55,8 @@ private:
 	bool m_bRunning; 
 
 	bool initGlobals(const char* title, int xpos, int ypos, int height, int width, int flags);
+
+	GameStateMachine* m_pGameStateMachine;
 };
 
 typedef Game TheGame;

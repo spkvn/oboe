@@ -12,6 +12,8 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 		if(m_bRunning)
 		{
+			m_pGameStateMachine = new GameStateMachine(); 
+			m_pGameStateMachine->changeState(new MenuState());
 			m_gameObjects.push_back(new Player(new LoaderParams(100,100,76,53,"animate")));
 			m_gameObjects.push_back(new Enemy(new LoaderParams(200,200,76,53,"animate")));
 
@@ -52,20 +54,11 @@ void Game::update()
 void Game::handleEvents()
 {
 	TheInputHandler::instance()->update();
-	//do nothing yet
-	// SDL_Event event;
-	// if(SDL_PollEvent(&event))
-	// {
-	// 	switch(event.type)
-	// 	{
-	// 		case SDL_QUIT:
-	// 			m_bRunning = false;
-	// 			break;
 
-	// 		default:
-	// 			break;
-	// 	}
-	// }
+	if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_RETURN))
+	{
+		m_pGameStateMachine->changeState(new PlayState());
+	}
 }
 
 void Game::clean()
