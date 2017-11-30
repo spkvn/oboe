@@ -33,11 +33,13 @@ void Game::render()
 	//clear the window
 	SDL_RenderClear(m_pRenderer);
 
-	//game objects
-	for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
-	}
+
+	m_pGameStateMachine->render();
+	// //game objects
+	// for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	// {
+	// 	m_gameObjects[i]->draw();
+	// }
 
 	//show the window
 	SDL_RenderPresent(m_pRenderer);
@@ -45,10 +47,11 @@ void Game::render()
 
 void Game::update()
 {
-	for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+	m_pGameStateMachine->update();
+	// for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	// {
+	// 	m_gameObjects[i]->update();
+	// }
 }
 
 void Game::handleEvents()
