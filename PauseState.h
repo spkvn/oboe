@@ -1,12 +1,15 @@
-#ifndef PLAY_STATE_H
-#define PLAY_STATE_H
+#ifndef PAUSE_STATE_H
+#define PAUSE_STATE_H
 #include <iostream>
 #include <vector>
 #include "GameState.h"
-#include "PauseState.h"
-#include "Player.h"
+#include "GameObject.h"
+#include "LoaderParams.h"
+#include "Game.h"
+#include "TextureManager.h"
+#include "MenuButton.h"
 
-class PlayState : public GameState
+class PauseState : public GameState
 {
 public:
 	virtual void update(); 	
@@ -17,8 +20,12 @@ public:
 
 	virtual std::string getStateID() const { return s_playID;}
 private:
+
+	static void s_pauseToMain(); 
+	static void s_resumePlay();
+
 	static const std::string s_playID; 
 
 	std::vector<GameObject*> m_gameObjects;
 };
-#endif//PLAY_STATE_H
+#endif//PAUSE_STATE_H

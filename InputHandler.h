@@ -35,6 +35,7 @@ public:
 
 	// Mouse Button functions
 	bool getMouseButtonState(int buttonNumber);
+	void reset();
 
 	// Mouse Motion functions
 	Vector2D* getMousePosition();

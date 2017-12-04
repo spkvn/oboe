@@ -328,3 +328,11 @@ Vector2D* InputHandler::getMousePosition()
 {
 	return m_mousePosition;
 }
+
+
+void InputHandler::reset()
+{
+    m_mouseButtonStates[LEFT] = false;
+    m_mouseButtonStates[RIGHT] = false;
+    m_mouseButtonStates[MIDDLE] = false;
+}
