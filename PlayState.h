@@ -5,6 +5,7 @@
 #include "GameState.h"
 #include "PauseState.h"
 #include "Player.h"
+#include "GameOverState.h"
 
 class PlayState : public GameState
 {
@@ -20,5 +21,7 @@ private:
 	static const std::string s_playID; 
 
 	std::vector<GameObject*> m_gameObjects;
+
+	bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 };
 #endif//PLAY_STATE_H
