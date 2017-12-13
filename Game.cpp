@@ -12,8 +12,9 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 		if(m_bRunning)
 		{
+			TheGameObjectFactory::instance()->registerType("MenuButton", new MenuButtonCreator());
 			m_pGameStateMachine = new GameStateMachine(); 
-			m_pGameStateMachine->changeState(new MenuState());
+			m_pGameStateMachine->changeState(new MainMenuState());
 		}
 	}
 	else
@@ -28,7 +29,6 @@ void Game::render()
 {
 	//clear the window
 	SDL_RenderClear(m_pRenderer);
-
 
 	m_pGameStateMachine->render();
 	// //game objects

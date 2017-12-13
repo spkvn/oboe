@@ -8,7 +8,10 @@
 #include "InputHandler.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
+#include "GameObjectFactory.h"
+#include "BaseCreator.h"
+#include "MenuButtonCreator.h"
 
 class Game
 {

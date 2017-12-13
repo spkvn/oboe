@@ -1,17 +1,21 @@
 #ifndef SDLGAMEOBJECT_H
 #define SDLGAMEOBJECT_H
+#include <SDL2/SDL.h>
 #include "LoaderParams.h"
 #include "GameObject.h"
 #include "TextureManager.h"
 #include "Vector2D.h"
-#include <SDL2/SDL.h>
+
 class SDLGameObject : public GameObject
 {
 public: 
-	SDLGameObject( const LoaderParams* pParams);
+	SDLGameObject();
 	virtual void draw();
 	virtual void update(); 
 	virtual void clean();
+
+	void load( const LoaderParams* pParams );
+
 
 	//Getters 
 	Vector2D& getPosition() {return m_position;}
@@ -26,6 +30,7 @@ protected:
 	int m_height;
 	int m_currentRow; 
 	int m_currentFrame;
+	int m_numFrames;
 	std::string m_textureID;
 };
 #endif // SDLGAMEOBJECT_H

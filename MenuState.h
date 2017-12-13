@@ -1,31 +1,16 @@
 #ifndef MENU_STATE_H
 #define MENU_STATE_H
-#include <iostream>
 #include <vector>
 #include "GameState.h"
 #include "GameObject.h"
-#include "LoaderParams.h"
-#include "Game.h"
-#include "TextureManager.h"
-#include "MenuButton.h"
 
 class MenuState : public GameState
 {
-public:
-	virtual void update(); 
-	virtual void render(); 
+protected: 
+	typedef void(*Callback)();
+	virtual void setCallbacks(const std::vector<Callback>& callbacks) = 0; 
 
-	virtual bool onEnter(); 
-	virtual bool onExit(); 
-
-	virtual std::string getStateID() const { return s_menuID;}
-private:
-	static const std::string s_menuID;
-	std::vector<GameObject*> m_gameObjects;
-
-	//callback functions for menu items
-	static void s_menuToPlay();
-	static void s_exitFromMenu();
+	std::vector<Callback> m_callbacks;
 };
 
 #endif//MENU_STATE_H

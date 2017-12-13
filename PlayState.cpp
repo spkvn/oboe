@@ -30,25 +30,25 @@ void PlayState::render()
 
 bool PlayState::onEnter()
 {
-	if(!TheTextureManager::instance()->load("assets/helicopter.png", "helicopter", TheGame::instance()->getRenderer()))
-	{
-		return false;
-	}
+	// if(!TheTextureManager::instance()->load("assets/helicopter.png", "helicopter", TheGame::instance()->getRenderer()))
+	// {
+	// 	return false;
+	// }
 	
-	if(!TheTextureManager::instance()->load("assets/helicopter2.png", "helicopter2", TheGame::instance()->getRenderer()))
-	{
-		return false;
-	}
+	// if(!TheTextureManager::instance()->load("assets/helicopter2.png", "helicopter2", TheGame::instance()->getRenderer()))
+	// {
+	// 	return false;
+	// }
 
-	GameObject* player = new Player(new LoaderParams(500,100,89,57, "helicopter"));
-	GameObject* enemy = new Enemy(new LoaderParams(100,100,89,57, "helicopter2"));
+	// GameObject* player = new Player(new LoaderParams(500,100,89,57, "helicopter"));
+	// GameObject* enemy = new Enemy(new LoaderParams(100,100,89,57, "helicopter2"));
 
-	m_gameObjects.push_back(player);
-	m_gameObjects.push_back(enemy);
+	// m_gameObjects.push_back(player);
+	// m_gameObjects.push_back(enemy);
 
-	std::cout << "entering PlayState" << std::endl;
+	// std::cout << "entering PlayState" << std::endl;
 
-	return true;
+	// return true;
 }
 
 bool PlayState::onExit()
