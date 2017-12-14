@@ -14,6 +14,7 @@
 #include "GameObjectFactory.h"
 #include "BaseCreator.h"
 #include "MenuButtonCreator.h"
+#include "AnimatedGraphicCreator.h"
 
 class Game
 {

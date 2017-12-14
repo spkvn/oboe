@@ -11,9 +11,11 @@
 #include "TextureManager.h"
 #include "MenuButton.h"
 #include "AnimatedGraphic.h"
+#include "MenuState.h"
+#include "MainMenuState.h"
 
 
-class GameOverState : public GameState
+class GameOverState : public MenuState
 {
 public:
 	virtual void update(); 
@@ -21,6 +23,8 @@ public:
 
 	virtual bool onEnter(); 
 	virtual bool onExit(); 
+
+	virtual void setCallbacks(const std::vector<Callback>& callbacks);
 
 	virtual std::string getStateID() const { return s_gameOverID;}
 private:

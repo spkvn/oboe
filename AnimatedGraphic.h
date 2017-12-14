@@ -7,8 +7,8 @@
 class AnimatedGraphic : public SDLGameObject
 {
 public:
-	AnimatedGraphic(const LoaderParams* pParams); 
-
+	AnimatedGraphic(); 
+	void load(const LoaderParams* pParams);
 	virtual void draw();
 	virtual void update();
 	virtual void clean();

@@ -43,6 +43,11 @@ public:
 	{
 		return m_numFrames;
 	}
+
+	int getAnimSpeed() const
+	{
+		return m_animSpeed;
+	}
 private:
 	int m_x;
 	int m_y; 

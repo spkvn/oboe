@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<STATES>
+	<GAMEOVER>
+		<TEXTURES>
+			<texture filename="assets/gameOver.png" id="gameover"/>
+			<texture filename="assets/mainMenuButton.png" id="mainmenubutton"/>
+			<texture filename="assets/restart.png" id="restartbutton"/>
+		</TEXTURES>
+		<OBJECTS>
+			<object type="AnimatedGraphic" x="200" y="100" width="256" height="64" textureID="gameover" numFrames="2" animSpeed="2"/> 
+			<object type="MenuButton" x="200" y="200" width="64" height="32" textureID="mainmenubutton" numFrames="0" callbackID="1"/>
+			<object type="MenuButton" x="200" y="300" width="64" height="32" textureID="restartbutton" numFrames="0" callbackID="2"/>
+		</OBJECTS>
+	</GAMEOVER>
+</STATES>

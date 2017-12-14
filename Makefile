@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project 
-OBJS = main.cpp Game.cpp Player.cpp Enemy.cpp SDLGameObject.cpp TextureManager.cpp Vector2D.cpp InputHandler.cpp MenuState.cpp PlayState.cpp GameStateMachine.cpp MenuButton.cpp PauseState.cpp AnimatedGraphic.cpp GameOverState.cpp GameObjectFactory.cpp PlayerCreator.cpp StateParser.cpp MainMenuState.cpp MenuButtonCreator.cpp EnemyCreator.cpp
+OBJS = main.cpp Game.cpp Player.cpp Enemy.cpp SDLGameObject.cpp TextureManager.cpp Vector2D.cpp InputHandler.cpp MenuState.cpp PlayState.cpp GameStateMachine.cpp MenuButton.cpp PauseState.cpp AnimatedGraphic.cpp GameOverState.cpp GameObjectFactory.cpp PlayerCreator.cpp StateParser.cpp MainMenuState.cpp MenuButtonCreator.cpp EnemyCreator.cpp AnimatedGraphicCreator.cpp
 
 #CC specifies which compiler we're using 
 CC = g++ 
