@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<STATES>
+	<PAUSE>
+		<TEXTURES>
+			<texture filename="assets/resumeButton.png" id="resumebutton"/>
+			<texture filename="assets/mainMenuButton.png" id="mainmenubutton"/>
+		</TEXTURES>
+		<OBJECTS>
+			<object type="MenuButton" x="100" y="100" width="64" height="32" textureID="resumebutton" numFrames="0" callbackID="1"/>
+			<object type="MenuButton" x="100" y="300" width="64" height="32" textureID="mainmenubutton" numFrames="0" callbackID="2"/>
+		</OBJECTS>
+	</PAUSE>
+</STATES>

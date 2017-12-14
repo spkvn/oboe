@@ -33,11 +33,6 @@ bool PlayState::onEnter()
 	StateParser stateParser; 
 	stateParser.parseState("conf/play.xml", s_playID, &m_gameObjects, &m_textureIDList);
 
-	// for(int i = 0; i < m_gameObjects.size(); i++)
-	// {
-	// 	std::cout << "gameObjects[" << i << "]: " << dynamic_cast<SDLGameObject*>(m_gameObjects[i])->getTextureID() << std::endl;
-	// }
-
 	std::cout << "entering PlayState" << std::endl;
 	return true;
 }
