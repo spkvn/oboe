@@ -13,7 +13,7 @@ COMPILER_FLAGS = -w -g
 LINKER_FLAGS = -lSDL2 -lSDL2_image -ltinyxml
 
 #OBJ_NAME specifies the name of our exectuable 
-OBJ_NAME = chapter6Executable
+OBJ_NAME = sdlbook.o
 
 #This is the target that compiles our executable 
 all : $(OBJS) 
