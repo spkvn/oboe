@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "PlayerCreator.h"
+#include "EnemyCreator.h"
 #include "InputHandler.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"

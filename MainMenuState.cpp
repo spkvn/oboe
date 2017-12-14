@@ -21,7 +21,7 @@ void MainMenuState::render()
 bool MainMenuState::onEnter()
 {
 	StateParser stateParser; 
-	stateParser.parseState("conf/test.xml", s_menuID, &m_gameObjects, &m_textureIDList);	
+	stateParser.parseState("conf/menu.xml", s_menuID, &m_gameObjects, &m_textureIDList);	
 
 	m_callbacks.push_back(0);	//pushback 0 so we can start from one? This author is so dum.
 	m_callbacks.push_back(s_menuToPlay);

@@ -10,6 +10,5 @@
 			<object type="MenuButton" x="100" y="300" width="64" height="32" textureID="exitbutton" numFrames="0" callbackID="2"/>
 		</OBJECTS>
 	</MENU>
-	<PLAY></PLAY>
-	<GAMEOVER></GAMEOVER>
+	
 </STATES>

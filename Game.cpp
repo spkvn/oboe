@@ -13,6 +13,8 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 		if(m_bRunning)
 		{
 			TheGameObjectFactory::instance()->registerType("MenuButton", new MenuButtonCreator());
+			TheGameObjectFactory::instance()->registerType("Player", new PlayerCreator());
+			TheGameObjectFactory::instance()->registerType("Enemy", new EnemyCreator());
 			m_pGameStateMachine = new GameStateMachine(); 
 			m_pGameStateMachine->changeState(new MainMenuState());
 		}

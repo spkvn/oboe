@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<STATES>
+	<PLAY>
+		<TEXTURES>
+			<texture filename="assets/helicopter.png" id="helicopter"/>
+			<texture filename="assets/helicopter2.png" id="helicopter2"/>
+		</TEXTURES>
+		<OBJECTS>
+			<object type="Player" x="500" y="100" width="89" height="57" textureID="helicopter" numFrames="4"/>
+			<object type="Enemy" x="100" y="100" width="89" height="57" textureID="helicopter2" numFrames="4"/>
+		</OBJECTS>
+	</PLAY>
+</STATES>

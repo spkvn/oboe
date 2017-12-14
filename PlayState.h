@@ -6,6 +6,7 @@
 #include "PauseState.h"
 #include "Player.h"
 #include "GameOverState.h"
+#include "StateParser.h"
 
 class PlayState : public GameState
 {
