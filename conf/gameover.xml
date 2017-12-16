@@ -4,7 +4,7 @@
 		<TEXTURES>
 			<texture filename="assets/gameOver.png" id="gameover"/>
 			<texture filename="assets/mainMenuButton.png" id="mainmenubutton"/>
-			<texture filename="assets/restart.png" id="restartbutton"/>
+			<texture filename="assets/restartButton.png" id="restartbutton"/>
 		</TEXTURES>
 		<OBJECTS>
 			<object type="AnimatedGraphic" x="200" y="100" width="256" height="64" textureID="gameover" numFrames="2" animSpeed="2"/> 

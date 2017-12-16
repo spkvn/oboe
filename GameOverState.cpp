@@ -71,5 +71,7 @@ void GameOverState::s_gameOverToMain()
 
 void GameOverState::s_restartPlay()
 {
+	std::cout << "before leaving gameover state" << std::endl;
 	TheGame::instance()->getStateMachine()->changeState(new PlayState());
+	std::cout << "after leaving gameover state" << std::endl;
 }
