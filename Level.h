@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "Layer.h"
+
 struct Tileset
 {
 	int firstGridID;
@@ -27,8 +29,10 @@ public:
 	void render();
 
 	std::vector<Tileset>* getTilesets();
+	std::vector<Layer*>* getLayers();
 private:
 	std::vector<Tileset> m_tilesets;
+	std::vector<Layer*> m_layers;
 };
 
 #endif//LEVEL_H
