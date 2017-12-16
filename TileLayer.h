@@ -6,6 +6,7 @@
 #include "Level.h"
 #include "Layer.h"
 #include "Vector2D.h"
+#include "Game.h"
 
 class TileLayer : public Layer
 {
@@ -21,7 +22,7 @@ public:
 	Tileset getTilesetByID(int tileID);
 private:
 	int m_numColumns; 
-	int m_numrows;
+	int m_numRows;
 	int m_tileSize; 
 
 	Vector2D m_position;

@@ -42,6 +42,9 @@ public:
 
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
 	GameStateMachine* getStateMachine() const { return m_pGameStateMachine;}
+
+	int getGameWidth(){return m_gameWidth;}
+	int getGameHeight(){return m_gameHeight;}
 private:
 	Game() {}
 	static Game* s_pInstance; 
@@ -59,6 +62,8 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning; 
+	int m_gameWidth; 
+	int m_gameHeight;
 
 	bool initGlobals(const char* title, int xpos, int ypos, int height, int width, int flags);
 

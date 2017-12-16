@@ -22,6 +22,7 @@ void PlayState::update()
 
 void PlayState::render()
 {
+	pLevel->render();
 	for(int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
@@ -30,8 +31,10 @@ void PlayState::render()
 
 bool PlayState::onEnter()
 {
-	StateParser stateParser; 
-	stateParser.parseState("conf/play.xml", s_playID, &m_gameObjects, &m_textureIDList);
+	LevelParser levelParser; 
+	pLevel = levelParser.parseLevel("assets/book_example.tmx");
+	// StateParser stateParser; 
+	// stateParser.parseState("conf/play.xml", s_playID, &m_gameObjects, &m_textureIDList);
 
 	std::cout << "entering PlayState" << std::endl;
 	return true;

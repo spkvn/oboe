@@ -87,6 +87,9 @@ bool Game::initGlobals(const char* title, int xpos, int ypos, int height, int wi
 		flags
 	);
 
+	m_gameWidth = width; 
+	m_gameHeight = height;
+
 	if(m_pWindow != 0)
 	{
 		m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);

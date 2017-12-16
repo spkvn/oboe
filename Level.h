@@ -15,14 +15,13 @@ struct Tileset
 	int margin;
 	int width; 
 	int height;
-	int numCoumns;
+	int numColumns;
 	std::string name;
 };
 
 class Level
 {
 public:
-	Level();
 	~Level();
 
 	void update();
@@ -33,6 +32,10 @@ public:
 private:
 	std::vector<Tileset> m_tilesets;
 	std::vector<Layer*> m_layers;
+	
+	friend class LevelParser;	// Friend class makes class available to the friend (incl private parts)
+								// I.E LevelParse can access Level ctor. 
+	Level() {}
 };
 
 #endif//LEVEL_H
