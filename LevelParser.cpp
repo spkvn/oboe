@@ -40,8 +40,14 @@ Level* LevelParser::parseLevel(const char* levelFile)
 
 void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets)
 {
-	//first add the tileset totexturemanager
-	TheTextureManager::instance()->load(pTilesetRoot->FirstChildElement()->Attribute("source"), pTilesetRoot->Attribute("name"), TheGame::instance()->getRenderer());
+	std::string srcImage = pTilesetRoot->FirstChildElement()->Attribute("source");
+	std::string tilesetName = pTilesetRoot->Attribute("name");
+	
+	std::cout << "LevelParser::parseTilesets(): srcImage:    " << srcImage << std::endl;
+	std::cout << "LevelParser::parseTilesets(): tilesetName: " << tilesetName << std::endl;
+
+	// first add the tileset totexturemanager
+	TheTextureManager::instance()->load(srcImage, tilesetName, TheGame::instance()->getRenderer());
 
 	// Create Tileset Obj
 	Tileset tileset; 
@@ -57,6 +63,8 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
 	tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
 
 	pTilesets->push_back(tileset);
+
+	std::cout << "LevelParser::parseTilesets(): Pushed tileset onto vector" << std::endl;
 }
 
 void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets)
