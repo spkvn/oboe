@@ -82,8 +82,8 @@ bool Game::initGlobals(const char* title, int xpos, int ypos, int height, int wi
 		title,
 		xpos,
 		ypos,
-		height,
 		width,
+		height,
 		flags
 	);
 

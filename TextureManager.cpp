@@ -56,6 +56,11 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width,  int hei
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0,0,flip);
 }
 
+bool TextureManager::textureExists(const std::string& id)
+{
+	return m_textureMap.count(id) != 0;
+}
+
 void TextureManager::drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer)
 {
 	SDL_Rect srcRect; 

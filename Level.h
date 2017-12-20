@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "Layer.h"
 
@@ -35,7 +36,7 @@ private:
 	
 	friend class LevelParser;	// Friend class makes class available to the friend (incl private parts)
 								// I.E LevelParse can access Level ctor. 
-	Level() {}
+	Level();
 };
 
 #endif//LEVEL_H

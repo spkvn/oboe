@@ -12,9 +12,15 @@ Level* LevelParser::parseLevel(const char* levelFile)
 	//get root node. 
 	TiXmlElement* pRoot = levelDocument.RootElement(); 
 
-	pRoot->Attribute("titlewidth", &m_tileSize); 
+	pRoot->Attribute("tilewidth", &m_tileSize); 
 	pRoot->Attribute("width", &m_width); 
 	pRoot->Attribute("height", &m_height);
+
+	std::cout << "Loading Level:" << std::endl;
+	std::cout << "\tTile Width: " << m_tileSize << std::endl;
+	std::cout << "\tMap Width:  "  << m_width    << std::endl;
+	std::cout << "\tMap Height: "  << m_height    << std::endl;
+
 
 	// parse the tilesets
 	for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
@@ -41,6 +47,8 @@ Level* LevelParser::parseLevel(const char* levelFile)
 void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets)
 {
 	std::string srcImage = pTilesetRoot->FirstChildElement()->Attribute("source");
+	srcImage = "assets/" + srcImage;
+
 	std::string tilesetName = pTilesetRoot->Attribute("name");
 	
 	std::cout << "LevelParser::parseTilesets(): srcImage:    " << srcImage << std::endl;
@@ -53,18 +61,30 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
 	Tileset tileset; 
 	pTilesetRoot->FirstChildElement()->Attribute("width", &tileset.width);
 	pTilesetRoot->FirstChildElement()->Attribute("height", &tileset.height);
-	pTilesetRoot->FirstChildElement()->Attribute("firstgid", &tileset.firstGridID);
-	pTilesetRoot->FirstChildElement()->Attribute("tilewidth", &tileset.tileWidth);
-	pTilesetRoot->FirstChildElement()->Attribute("tileheight", &tileset.tileHeight);
-	pTilesetRoot->FirstChildElement()->Attribute("spacing", &tileset.spacing);
-	pTilesetRoot->FirstChildElement()->Attribute("margin", &tileset.margin);
+	pTilesetRoot->Attribute("firstgid", &tileset.firstGridID);
+	pTilesetRoot->Attribute("tilewidth", &tileset.tileWidth);
+	pTilesetRoot->Attribute("tileheight", &tileset.tileHeight);
+	pTilesetRoot->Attribute("spacing", &tileset.spacing);
+	pTilesetRoot->Attribute("margin", &tileset.margin);
 
 	tileset.name 	  = pTilesetRoot->Attribute("name");
 	tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
 
+	std::cout << "Examining Tileset" << std::endl;
+	std::cout << "\tWidth:      " << tileset.width << std::endl;
+	std::cout << "\tHeight:     " << tileset.height << std::endl;
+	std::cout << "\tFirstGID:   " << tileset.firstGridID << std::endl;
+	std::cout << "\tTileWidth:  " << tileset.tileWidth << std::endl;
+	std::cout << "\tTileHeight: " << tileset.tileHeight << std::endl;
+	std::cout << "\tSpacing:    " << tileset.spacing << std::endl;
+	std::cout << "\tMargin:     " << tileset.margin << std::endl;
+	std::cout << "\tName:       " << tileset.name   << std::endl;
+	std::cout << "\tnumColumns: " << tileset.numColumns << std::endl;
+
+
 	pTilesets->push_back(tileset);
 
-	std::cout << "LevelParser::parseTilesets(): Pushed tileset onto vector" << std::endl;
+	// std::cout << "LevelParser::parseTilesets(): Pushed tileset onto vector" << std::endl;
 }
 
 void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets)
@@ -93,7 +113,6 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
 	}
 
 	// uncompress zlib compression;
-
 	uLongf numGids = m_width * m_height * sizeof(int);
 	std::vector<unsigned> gids(numGids);
 	uncompress((Bytef*)&gids[0],&numGids, (const Bytef*)decodedIDs.c_str(),decodedIDs.size());
@@ -112,6 +131,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
 			data[rows][cols] = gids[rows * m_width + cols];
 		}
 	}
+
 
 	pTileLayer->setTileIDs(data);
 
