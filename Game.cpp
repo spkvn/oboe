@@ -94,7 +94,7 @@ bool Game::initGlobals(const char* title, int xpos, int ypos, int height, int wi
 	{
 		m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 		//set to white
-		SDL_SetRenderDrawColor(m_pRenderer,0,0,0,255);
+		SDL_SetRenderDrawColor(m_pRenderer,184,184,214,255);
 	}
 	else
 	{
