@@ -1,25 +1,23 @@
 #ifndef GAME_H
 #define GAME_H 
+
 #include <vector>
 #include <SDL2/SDL.h>
-#include "GameObject.h"
-#include "Player.h"
-#include "Enemy.h"
+
+#include "GameObjectFactory.h"
 #include "PlayerCreator.h"
 #include "EnemyCreator.h"
+#include "MenuButtonCreator.h"
+#include "AnimatedGraphicCreator.h"
 #include "InputHandler.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
 #include "MainMenuState.h"
-#include "GameObjectFactory.h"
-#include "BaseCreator.h"
-#include "MenuButtonCreator.h"
-#include "AnimatedGraphicCreator.h"
 
 class Game
 {
 public:
-	~Game() {}
+	~Game();
 
 	bool init(const char* title, int xpos, int ypos, int height, int width, int flags);
 	void render();
@@ -46,28 +44,20 @@ public:
 	int getGameWidth(){return m_gameWidth;}
 	int getGameHeight(){return m_gameHeight;}
 private:
-	Game() {}
+	Game();
 	static Game* s_pInstance; 
 
-
 	SDL_Texture* m_pTexture;
-	SDL_Rect m_sourceRectangle;
-	SDL_Rect m_destinationRectangle;
-
-	int m_currentFrame; 
-	
-	//game object vector
-	std::vector<GameObject*> m_gameObjects;
-
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	bool m_bRunning; 
-	int m_gameWidth; 
+    GameStateMachine* m_pGameStateMachine;
+
+    bool m_bRunning;
+    int m_gameWidth;
+
 	int m_gameHeight;
 
 	bool initGlobals(const char* title, int xpos, int ypos, int height, int width, int flags);
-
-	GameStateMachine* m_pGameStateMachine;
 };
 
 typedef Game TheGame;

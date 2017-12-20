@@ -33,12 +33,8 @@ void Game::render()
 	//clear the window
 	SDL_RenderClear(m_pRenderer);
 
+    //render the state + it's objects
 	m_pGameStateMachine->render();
-	// //game objects
-	// for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	// {
-	// 	m_gameObjects[i]->draw();
-	// }
 
 	//show the window
 	SDL_RenderPresent(m_pRenderer);
@@ -47,10 +43,6 @@ void Game::render()
 void Game::update()
 {
 	m_pGameStateMachine->update();
-	// for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	// {
-	// 	m_gameObjects[i]->update();
-	// }
 }
 
 void Game::handleEvents()
@@ -106,4 +98,16 @@ bool Game::initGlobals(const char* title, int xpos, int ypos, int height, int wi
 void Game::quit()
 {
 	m_bRunning = false;
+}
+
+Game::~Game()
+{
+    delete m_pTexture;
+	delete m_pWindow;
+	delete m_pRenderer;
+    delete m_pGameStateMachine;
+}
+
+Game::Game()
+{
 }
