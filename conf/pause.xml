@@ -2,8 +2,8 @@
 <STATES>
 	<PAUSE>
 		<TEXTURES>
-			<texture filename="assets/resumeButton.png" id="resumebutton"/>
-			<texture filename="assets/mainMenuButton.png" id="mainmenubutton"/>
+			<texture filename="../assets/resumeButton.png" id="resumebutton"/>
+			<texture filename="../assets/mainMenuButton.png" id="mainmenubutton"/>
 		</TEXTURES>
 		<OBJECTS>
 			<object type="MenuButton" x="100" y="100" width="64" height="32" textureID="resumebutton" numFrames="0" callbackID="1"/>

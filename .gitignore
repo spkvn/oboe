@@ -2,4 +2,6 @@ Movement
 GameObject
 chapter5Executable
 sdlbook.o
-
+.idea/
+.idea/*
+cmake-build-debug/
