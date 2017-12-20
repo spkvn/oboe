@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(sdl-book)
+project(oboe)
 
 #append ./cmake to CMAKE_MODULE_PATH
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -14,7 +14,7 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${TINYXML_IN
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(sdl_book main.cpp
+add_executable(oboe main.cpp
                 AnimatedGraphic.cpp
                 AnimatedGraphicCreator.cpp
                 base64.cpp
@@ -43,4 +43,4 @@ add_executable(sdl_book main.cpp
                 Vector2D.cpp
         )
 
-target_link_libraries(sdl_book ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${TINYXML_LIBRARIES} ${ZLIB_LIBRARIES})
+target_link_libraries(oboe ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${TINYXML_LIBRARIES} ${ZLIB_LIBRARIES})
