@@ -4,7 +4,6 @@ const std::string PlayState::s_playID = "PLAY";
 
 void PlayState::update()
 {
-	std::cout << "PlayState::update(): Starting Handling Events" << std::endl; 
 	if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::instance()->getStateMachine()->pushState(new PauseState());
@@ -19,21 +18,15 @@ void PlayState::update()
 	{
 		TheGame::instance()->getStateMachine()->pushState(new GameOverState());
 	}
-	std::cout << "PlayState::update(): End of Handling Events" << std::endl;
 }
 
 void PlayState::render()
 {
-	std::cout << "PlayState::render(): start of render()" << std::endl;
 	pLevel->render();
-	std::cout << "PlayState::render(): Level rendered;" << std::endl;
 	for(int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}
-	std::cout << "PlayState::render(): Objects rendered" << std::endl;	
-
-	std::cout << "PlayState::render(): End of render()" << std::endl;
 }
 
 bool PlayState::onEnter()

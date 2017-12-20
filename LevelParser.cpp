@@ -16,12 +16,6 @@ Level* LevelParser::parseLevel(const char* levelFile)
 	pRoot->Attribute("width", &m_width); 
 	pRoot->Attribute("height", &m_height);
 
-	std::cout << "Loading Level:" << std::endl;
-	std::cout << "\tTile Width: " << m_tileSize << std::endl;
-	std::cout << "\tMap Width:  "  << m_width    << std::endl;
-	std::cout << "\tMap Height: "  << m_height    << std::endl;
-
-
 	// parse the tilesets
 	for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -51,8 +45,8 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
 
 	std::string tilesetName = pTilesetRoot->Attribute("name");
 	
-	std::cout << "LevelParser::parseTilesets(): srcImage:    " << srcImage << std::endl;
-	std::cout << "LevelParser::parseTilesets(): tilesetName: " << tilesetName << std::endl;
+	// std::cout << "LevelParser::parseTilesets(): srcImage:    " << srcImage << std::endl;
+	// std::cout << "LevelParser::parseTilesets(): tilesetName: " << tilesetName << std::endl;
 
 	// first add the tileset totexturemanager
 	TheTextureManager::instance()->load(srcImage, tilesetName, TheGame::instance()->getRenderer());
@@ -70,16 +64,16 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
 	tileset.name 	  = pTilesetRoot->Attribute("name");
 	tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
 
-	std::cout << "Examining Tileset" << std::endl;
-	std::cout << "\tWidth:      " << tileset.width << std::endl;
-	std::cout << "\tHeight:     " << tileset.height << std::endl;
-	std::cout << "\tFirstGID:   " << tileset.firstGridID << std::endl;
-	std::cout << "\tTileWidth:  " << tileset.tileWidth << std::endl;
-	std::cout << "\tTileHeight: " << tileset.tileHeight << std::endl;
-	std::cout << "\tSpacing:    " << tileset.spacing << std::endl;
-	std::cout << "\tMargin:     " << tileset.margin << std::endl;
-	std::cout << "\tName:       " << tileset.name   << std::endl;
-	std::cout << "\tnumColumns: " << tileset.numColumns << std::endl;
+	// std::cout << "Examining Tileset" << std::endl;
+	// std::cout << "\tWidth:      " << tileset.width << std::endl;
+	// std::cout << "\tHeight:     " << tileset.height << std::endl;
+	// std::cout << "\tFirstGID:   " << tileset.firstGridID << std::endl;
+	// std::cout << "\tTileWidth:  " << tileset.tileWidth << std::endl;
+	// std::cout << "\tTileHeight: " << tileset.tileHeight << std::endl;
+	// std::cout << "\tSpacing:    " << tileset.spacing << std::endl;
+	// std::cout << "\tMargin:     " << tileset.margin << std::endl;
+	// std::cout << "\tName:       " << tileset.name   << std::endl;
+	// std::cout << "\tnumColumns: " << tileset.numColumns << std::endl;
 
 
 	pTilesets->push_back(tileset);

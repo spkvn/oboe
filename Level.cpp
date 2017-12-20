@@ -19,7 +19,6 @@ void Level::render()
 {
 	for(int i = 0; i < m_layers.size(); i++ )
 	{
-		std::cout << "Level::render(): Rendering Level's layer: " << i << std::endl;		
 		m_layers[i]->render();
 	}
 }
