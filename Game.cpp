@@ -12,12 +12,12 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 		if(m_bRunning)
 		{
-			TheGameObjectFactory::instance()->registerType("MenuButton", new MenuButtonCreator());
-			TheGameObjectFactory::instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
-			TheGameObjectFactory::instance()->registerType("Player", new PlayerCreator());
-			TheGameObjectFactory::instance()->registerType("Enemy", new EnemyCreator());
+//			TheGameObjectFactory::instance()->registerType("MenuButton", new MenuButtonCreator());
+//			TheGameObjectFactory::instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
+//			TheGameObjectFactory::instance()->registerType("Player", new PlayerCreator());
+			TheGameObjectFactory::instance()->registerType("Tile", new TileCreator());
 			m_pGameStateMachine = new GameStateMachine(); 
-			m_pGameStateMachine->changeState(new MainMenuState());
+			m_pGameStateMachine->changeState(new PlayState());
 		}
 	}
 	else

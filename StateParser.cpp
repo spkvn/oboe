@@ -97,7 +97,7 @@ void StateParser::parseTextures(TiXmlElement* pStateRoot, std::vector<std::strin
 		std::string filenameAttribute = e->Attribute("filename");
 		
 		std::string idAttribute = e->Attribute("id");
-		pTextureIDs->push_back("idAttribute");
+		pTextureIDs->push_back(idAttribute);
 
 		//with current XML this returns true. all good. 
 		TheTextureManager::instance()->load(filenameAttribute,idAttribute,TheGame::instance()->getRenderer());

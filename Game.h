@@ -5,14 +5,10 @@
 #include <SDL2/SDL.h>
 
 #include "GameObjectFactory.h"
-#include "PlayerCreator.h"
-#include "EnemyCreator.h"
-#include "MenuButtonCreator.h"
-#include "AnimatedGraphicCreator.h"
+#include "TileCreator.h"
 #include "InputHandler.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
-#include "MainMenuState.h"
 
 class Game
 {

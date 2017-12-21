@@ -15,32 +15,21 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${TINYXML_IN
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(oboe main.cpp
-                AnimatedGraphic.cpp
-                AnimatedGraphicCreator.cpp
                 base64.cpp
-                Enemy.cpp
-                EnemyCreator.cpp
                 Game.cpp
                 GameObjectFactory.cpp
-                GameOverState.cpp
                 GameState.h
                 GameStateMachine.cpp
                 InputHandler.cpp
                 Level.cpp
                 LevelParser.cpp
-                MainMenuState.cpp
-                MenuButton.cpp
-                MenuButtonCreator.cpp
                 MenuState.cpp
-                PauseState.cpp
-                Player.cpp
-                PlayerCreator.cpp
                 PlayState.cpp
                 SDLGameObject.cpp
                 StateParser.cpp
                 TextureManager.cpp
                 TileLayer.cpp
                 Vector2D.cpp
-        )
+        Tile.cpp Tile.h TileCreator.cpp TileCreator.h)
 
 target_link_libraries(oboe ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${TINYXML_LIBRARIES} ${ZLIB_LIBRARIES})
