@@ -7,7 +7,10 @@
 
 Cursor::Cursor() : SDLGameObject()
 {
-
+    for(int i = 0; i < 4; i++)
+    {
+        keysPressed[i] = false;
+    }
 }
 
 void Cursor::load(const LoaderParams *pParams)
@@ -32,48 +35,59 @@ void Cursor::clean()
 
 void Cursor::handleInput()
 {
+    if( (keysPressed[Direction::Left] && !(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_LEFT)))){
+        keysPressed[Direction::Left] = false;
+        int currentX = m_position.getX();
+        if(currentX - 32 >= 0)
+        {
+            m_position.setX(currentX - 32);
+        }
+    }
+
+    if(keysPressed[Direction::Right] && !(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_RIGHT)) ){
+        keysPressed[Direction::Right] = false;
+        int currentX = m_position.getX();
+        if(currentX + 32 < TheGame::instance()->getGameWidth())
+        {
+            m_position.setX(currentX + 32);
+        }
+    }
+    if(keysPressed[Direction::Up] && !(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_UP)) ){
+        keysPressed[Direction::Up] = false;
+        int currentY  = m_position.getY();
+        if(currentY - 32 >= 0)
+        {
+            m_position.setY(currentY - 32);
+        }
+    }
+
+    if(keysPressed[Direction::Down] && !(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_DOWN)) ){
+        keysPressed[Direction::Down] = false;
+        int currentY  = m_position.getY();
+        if(currentY + 32 < TheGame::instance()->getGameHeight())
+        {
+            m_position.setY(currentY + 32);
+        }
+    }
+
+
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_LEFT))
     {
-        int currentX = m_position.getX();
-        std::cout << "Left Key down" << std::endl;
-        if(currentX - 1 * 32 >= 0)
-        {
-            m_position.setX(currentX - 1 * 32);
-            std::cout << "Cursor::handleInput(): Moving Left ("<<m_position.getX()<<","<<m_position.getY()<<")"<<std::endl;
-        }
+        keysPressed[Direction::Left] = true;
     }
 
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_RIGHT))
     {
-        int currentX = m_position.getX();
-        std::cout << "Right Key down" << std::endl;
-        if(currentX + 1 * 32 < TheGame::instance()->getGameWidth())
-        {
-            m_position.setX(currentX + 1 * 32);
-            std::cout << "Cursor::handleInput(): Moving Right (x,y): ("<<m_position.getX()<<","<<m_position.getY()<<")"<<std::endl;
-            std::cout << "Cursor::handleInput(): Moving Right gameWidth:" << TheGame::instance()->getGameWidth() << std::endl;
-        }
+        keysPressed[Direction::Right] = true;
     }
 
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_UP))
     {
-        int currentY  = m_position.getY();
-        std::cout << "Up Key down" << std::endl;
-        if(currentY - 1 * 32 >= 0)
-        {
-            m_position.setY(currentY - 1 * 32);
-            std::cout << "Cursor::handleInput(): Moving Up ("<<m_position.getX()<<","<<m_position.getY()<<")"<<std::endl;
-        }
+        keysPressed[Direction::Up] = true;
+
     }
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_DOWN))
     {
-        int currentY  = m_position.getY();
-        std::cout << "Down Key down" << std::endl;
-        if(currentY + 1 * 32 < TheGame::instance()->getGameHeight())
-        {
-            m_position.setY(currentY + 1 * 32);
-            std::cout << "Cursor::handleInput(): Moving Down ("<<m_position.getX()<<","<<m_position.getY()<<")"<<std::endl;
-            std::cout << "Cursor::handleInput(): Moving Down gameHeight:" << TheGame::instance()->getGameHeight() << std::endl;
-        }
+        keysPressed[Direction::Down] = true;
     }
 }

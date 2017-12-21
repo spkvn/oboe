@@ -129,10 +129,9 @@ void InputHandler::update()
 	}
 }
 
-
 void InputHandler::onKeyDown()
 {
-    m_keyStates = SDL_GetKeyboardState(0);
+	m_keyStates = SDL_GetKeyboardState(0);
 }
 
 void InputHandler::onKeyUp()
