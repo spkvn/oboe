@@ -4,6 +4,7 @@
         <TEXTURES>
             <texture filename="../assets/grass.png" id="grass"/>
             <texture filename="../assets/cursor.png" id="cursor"/>
+            <texture filename="../assets/inft.png" id="infantry"/>
         </TEXTURES>
         <OBJECTS>
             <object type="Tile" x="0"   y="0" width="32" height="32" textureID="grass"/>
@@ -322,6 +323,8 @@
             <object type="Tile" x="608" y="448" width="32" height="32" textureID="grass"/>
 
             <object type="Cursor" x="0" y="0" width="32" height="32" textureID="cursor" numFrames="2" animSpeed="2"/>
+
+            <object type="Infantry" x="32" y="32" width="32" height="32" textureID="infantry" numFrames="6"/>
         </OBJECTS>
     </PLAY>
 </STATES>
