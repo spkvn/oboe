@@ -16,6 +16,7 @@ Cursor::Cursor() : SDLGameObject()
 void Cursor::load(const LoaderParams *pParams)
 {
     SDLGameObject::load(pParams);
+    m_animSpeed = pParams->getAnimSpeed();
 }
 
 void Cursor::draw()
@@ -26,6 +27,7 @@ void Cursor::draw()
 void Cursor::update()
 {
     handleInput();
+    m_currentFrame = int(((SDL_GetTicks()/(1000/ m_animSpeed))%m_numFrames));
 }
 
 void Cursor::clean()

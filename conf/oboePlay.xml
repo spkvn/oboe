@@ -321,7 +321,7 @@
             <object type="Tile" x="576" y="448" width="32" height="32" textureID="grass"/>
             <object type="Tile" x="608" y="448" width="32" height="32" textureID="grass"/>
 
-            <object type="Cursor" x="0" y="0" width="32" height="32" textureID="cursor" numFrames="2"/>
+            <object type="Cursor" x="0" y="0" width="32" height="32" textureID="cursor" numFrames="2" animSpeed="2"/>
         </OBJECTS>
     </PLAY>
 </STATES>
