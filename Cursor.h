@@ -2,24 +2,29 @@
 // Created by kevin on 21/12/17.
 //
 
-#ifndef TILE_H
-#define TILE_H
+#ifndef CURSOR_H
+#define CURSOR_H
 
-#include <string>
+#include <iostream>
 
 #include "SDLGameObject.h"
 #include "InputHandler.h"
+#include "Game.h"
 
-class Tile : public SDLGameObject
+
+class Cursor : public SDLGameObject
 {
 public:
-    Tile();
+    Cursor();
     void load(const LoaderParams* pParams);
 
     virtual void draw();
     virtual void update();
     virtual void clean();
+
+private:
+    void handleInput();
 };
 
 
-#endif //TILE_H
+#endif //CURSOR_H

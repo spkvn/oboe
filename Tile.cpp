@@ -16,7 +16,14 @@ void Tile::load(const LoaderParams *pParams)
 
 void Tile::draw()
 {
-    SDLGameObject::draw();
+    TheTextureManager::instance()->draw(
+        m_textureID,
+        (int) m_position.getX(),
+        (int) m_position.getY(),
+        m_width,
+        m_height,
+        TheGame::instance()->getRenderer()
+    );
 }
 
 void Tile::update()
@@ -26,4 +33,5 @@ void Tile::update()
 
 void Tile::clean()
 {
+    SDLGameObject::clean();
 }

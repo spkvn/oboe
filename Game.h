@@ -6,6 +6,7 @@
 
 #include "GameObjectFactory.h"
 #include "TileCreator.h"
+#include "CursorCreator.h"
 #include "InputHandler.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"

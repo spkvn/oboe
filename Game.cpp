@@ -16,6 +16,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 //			TheGameObjectFactory::instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
 //			TheGameObjectFactory::instance()->registerType("Player", new PlayerCreator());
 			TheGameObjectFactory::instance()->registerType("Tile", new TileCreator());
+            TheGameObjectFactory::instance()->registerType("Cursor", new CursorCreator());
 			m_pGameStateMachine = new GameStateMachine(); 
 			m_pGameStateMachine->changeState(new PlayState());
 		}
