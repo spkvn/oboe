@@ -9,7 +9,8 @@ SDLGameObject::SDLGameObject() : GameObject(),
 								m_textureID(""),
 								m_currentRow(1),
 								m_currentFrame(0),
-								m_numFrames(0)
+								m_numFrames(0),
+							    m_type("")
 {
 
 }

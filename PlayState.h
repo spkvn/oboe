@@ -6,6 +6,7 @@
 #include "StateParser.h"
 #include "Level.h"
 #include "LevelParser.h"
+#include "SDLGameObject.h"
 
 class PlayState : public GameState
 {
@@ -18,7 +19,8 @@ public:
 
 	virtual std::string getStateID() const { return s_playID;}
 private:
-	static const std::string s_playID; 
+	static const std::string s_playID;
+	SDLGameObject* m_pCursor;
 
 	std::vector<GameObject*> m_gameObjects;
 };

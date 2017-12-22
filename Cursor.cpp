@@ -11,6 +11,7 @@ Cursor::Cursor() : SDLGameObject()
     {
         keysPressed[i] = false;
     }
+    m_type = "Cursor";
 }
 
 void Cursor::load(const LoaderParams *pParams)

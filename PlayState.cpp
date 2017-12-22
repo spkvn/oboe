@@ -9,6 +9,10 @@ void PlayState::update()
 		m_gameObjects[i]->update();
 	}
 
+    if(InputHandler::instance()->isKeyDown(SDL_SCANCODE_X)) {
+        std::cout << "X Pressed: Here's the cursor's XY: " << m_pCursor->getPosition().getX()<< "," << m_pCursor->getPosition().getY() << std::endl;
+    }
+
 }
 
 void PlayState::render()
@@ -24,7 +28,17 @@ bool PlayState::onEnter()
 	StateParser stateParser;
 	stateParser.parseState("../conf/oboePlay.xml", s_playID, &m_gameObjects, &m_textureIDList);
 
-	std::cout << "entering PlayState" << std::endl;
+    for(int i = 0; i < m_gameObjects.size(); i++)
+    {
+        SDLGameObject* SDLGameObjI =  dynamic_cast<SDLGameObject*>(m_gameObjects[i]);
+        if(SDLGameObjI->getType() == "Cursor")
+        {
+            std::cout << "PlayState::onEnter(): Found Cursor" << std::endl;
+            m_pCursor = SDLGameObjI;
+        }
+    }
+
+    std::cout << "entering PlayState" << std::endl;
 	return true;
 }
 

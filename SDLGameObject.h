@@ -22,6 +22,8 @@ public:
 	int getWidth() 		    	{return m_width;}
 	int getHeight()				{return m_height;}
 	std::string getTextureID()  {return m_textureID;}
+	std::string getType()	    {return m_type;}
+
 protected: 
 	Vector2D m_position;
 	Vector2D m_velocity;
@@ -33,5 +35,6 @@ protected:
 	int m_currentFrame;
 	int m_numFrames;
 	std::string m_textureID;
+	std::string m_type;
 };
 #endif // SDLGAMEOBJECT_H

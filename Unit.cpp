@@ -5,7 +5,9 @@
 #include "Unit.h"
 
 Unit::Unit() : SDLGameObject()
-{}
+{
+    m_type = "Unit";
+}
 
 void Unit::load(const LoaderParams* pParams)
 {
@@ -24,3 +26,5 @@ void Unit::clean()
 {
     SDLGameObject::clean();
 }
+
+std::string Unit::getType() {return m_type;}

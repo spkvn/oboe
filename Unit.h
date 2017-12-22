@@ -16,6 +16,8 @@ public:
     virtual void draw();
     virtual void update();
     virtual void clean();
+
+    std::string getType();
 };
 
 #endif //UNIT_H

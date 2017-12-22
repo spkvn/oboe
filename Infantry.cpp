@@ -10,6 +10,7 @@ Infantry::Infantry() : Unit()
 void Infantry::load(const LoaderParams* pParams)
 {
     Unit::load(pParams);
+    m_type = "Infantry";
 }
 
 void Infantry::draw()
