@@ -21,7 +21,8 @@ public:
 private:
 	static const std::string s_playID;
 	SDLGameObject* m_pCursor;
-
 	std::vector<GameObject*> m_gameObjects;
+
+    std::vector<SDLGameObject*> getObjectsAtCursor();
 };
 #endif//PLAY_STATE_H

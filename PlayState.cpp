@@ -10,9 +10,27 @@ void PlayState::update()
 	}
 
     if(InputHandler::instance()->isKeyDown(SDL_SCANCODE_X)) {
-        std::cout << "X Pressed: Here's the cursor's XY: " << m_pCursor->getPosition().getX()<< "," << m_pCursor->getPosition().getY() << std::endl;
+		std::vector<SDLGameObject*> v = getObjectsAtCursor();
     }
+}
 
+std::vector<SDLGameObject*> PlayState::getObjectsAtCursor()
+{
+	int cursorX, cursorY;
+	cursorX = m_pCursor->getPosition().getX();
+	cursorY = m_pCursor->getPosition().getY();
+	std::vector<SDLGameObject*> v;
+	for(int i = 0; i < m_gameObjects.size(); i++)
+	{
+		SDLGameObject* objectI  = dynamic_cast<SDLGameObject*>(m_gameObjects[i]);
+		if(objectI->getPosition().getX() == cursorX && objectI->getPosition().getY() == cursorY && objectI->getType() != "Cursor")
+		{
+			std::cout << "Adding an object: " << objectI->getType() << std::endl;
+			v.push_back(objectI);
+		}
+	}
+
+    return v;
 }
 
 void PlayState::render()
