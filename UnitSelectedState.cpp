@@ -29,7 +29,7 @@ bool UnitSelectedState::onEnter()
     TheTextureManager::instance()->load("../assets/arrows/aVertical.png",    "aVertical", TheGame::instance()->getRenderer());
     TheTextureManager::instance()->load("../assets/arrows/aHorizontal.png",  "aHorizontal", TheGame::instance()->getRenderer());
 
-    recurseMoveRange(m_unit->getPosition().getX(), m_unit->getPosition().getY(), 0);
+    recurseMoveRange(m_unit->getPosition().getX(), m_unit->getPosition().getY(), 1);
 
     std::cout << "Entering Unit Selected State" << std::endl;
 }
@@ -43,12 +43,9 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
         int lY = l->getPosition().getY();
         if(lX != m_unit->getPosition().getX() || lY != m_unit->getPosition().getY())
         {
-            if(!inMovables(l))
-            {
-                std::cout << "Adding tile at x: "<< lX << "y: " << lY << std::endl;
-                m_movableTiles.push_back(l);
-                recurseMoveRange(l->getPosition().getX(), l->getPosition().getY(), currentDistance+1);
-            }
+            std::cout << "Adding tile at x: "<< lX << "y: " << lY << std::endl;
+            m_movableTiles.push_back(l);
+            recurseMoveRange(l->getPosition().getX(), l->getPosition().getY(), currentDistance+1);
         }
     }
 
@@ -59,12 +56,9 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
         int rY = r->getPosition().getY();
         if(rX != m_unit->getPosition().getX() || rY != m_unit->getPosition().getY())
         {
-            if(!inMovables(r))
-            {
-                std::cout << "Adding tile at x: "<< rX << "y: " << rY << std::endl;
-                m_movableTiles.push_back(r);
-                recurseMoveRange(r->getPosition().getX(), r->getPosition().getY(), currentDistance+1);
-            }
+            std::cout << "Adding tile at x: "<< rX << "y: " << rY << std::endl;
+            m_movableTiles.push_back(r);
+            recurseMoveRange(r->getPosition().getX(), r->getPosition().getY(), currentDistance+1);
         }
     }
 
@@ -75,12 +69,9 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
         int uY = u->getPosition().getY();
         if(uX != m_unit->getPosition().getX() || uY != m_unit->getPosition().getY())
         {
-            if(!inMovables(u))
-            {
-                std::cout << "Adding tile at x: "<< uX << "y: " << uY << std::endl;
-                m_movableTiles.push_back(u);
-                recurseMoveRange(u->getPosition().getX(), u->getPosition().getY(), currentDistance+1);
-            }
+            std::cout << "Adding tile at x: "<< uX << "y: " << uY << std::endl;
+            m_movableTiles.push_back(u);
+            recurseMoveRange(u->getPosition().getX(), u->getPosition().getY(), currentDistance+1);
         }
     }
 
@@ -91,12 +82,9 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
         int dY = d->getPosition().getY();
         if(dX != m_unit->getPosition().getX() || dY != m_unit->getPosition().getY())
         {
-            if(!inMovables(d))
-            {
-                std::cout << "Adding tile at x: "<< dX << "y: " << dY << std::endl;
-                m_movableTiles.push_back(d);
-                recurseMoveRange(d->getPosition().getX(), d->getPosition().getY(), currentDistance+1);
-            }
+            std::cout << "Adding tile at x: "<< dX << "y: " << dY << std::endl;
+            m_movableTiles.push_back(d);
+            recurseMoveRange(d->getPosition().getX(), d->getPosition().getY(), currentDistance+1);
         }
     }
 }
