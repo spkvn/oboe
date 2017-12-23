@@ -7,6 +7,7 @@
 Unit::Unit() : SDLGameObject()
 {
     m_type = "Unit";
+    m_moveRange = 0;
 }
 
 void Unit::load(const LoaderParams* pParams)
@@ -28,3 +29,4 @@ void Unit::clean()
 }
 
 std::string Unit::getType() {return m_type;}
+int Unit::getMoveRange() {return m_moveRange;}

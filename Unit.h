@@ -18,6 +18,9 @@ public:
     virtual void clean();
 
     std::string getType();
+    int getMoveRange();
+protected:
+    int m_moveRange;
 };
 
 #endif //UNIT_H

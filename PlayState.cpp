@@ -11,6 +11,19 @@ void PlayState::update()
 
     if(InputHandler::instance()->isKeyDown(SDL_SCANCODE_X)) {
 		std::vector<SDLGameObject*> v = getObjectsAtCursor();
+        enterUnitSelectedState(v);
+    }
+}
+
+void PlayState::enterUnitSelectedState(std::vector<SDLGameObject*> v)
+{
+    for(int i = 0; i < v.size(); i++)
+    {
+        std::string type = v[i]->getType();
+        if(type == "Infantry" || type == "Unit"){
+            Unit* u = dynamic_cast<Unit*>(v[i]);
+            TheGame::instance()->getStateMachine()->pushState(new UnitSelectedState(m_gameObjects,u));
+        }
     }
 }
 
@@ -55,6 +68,7 @@ bool PlayState::onEnter()
             m_pCursor = SDLGameObjI;
         }
     }
+
 
     std::cout << "entering PlayState" << std::endl;
 	return true;

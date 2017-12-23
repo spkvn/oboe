@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "GameState.h"
+#include "UnitSelectedState.h"
 #include "StateParser.h"
 #include "Level.h"
 #include "LevelParser.h"
@@ -24,5 +25,7 @@ private:
 	std::vector<GameObject*> m_gameObjects;
 
     std::vector<SDLGameObject*> getObjectsAtCursor();
+
+    void enterUnitSelectedState(std::vector<SDLGameObject*> v);
 };
 #endif//PLAY_STATE_H

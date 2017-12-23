@@ -5,7 +5,9 @@
 #include "Infantry.h"
 
 Infantry::Infantry() : Unit()
-{}
+{
+    m_moveRange = 3;
+}
 
 void Infantry::load(const LoaderParams* pParams)
 {
