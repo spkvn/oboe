@@ -30,6 +30,6 @@ add_executable(oboe main.cpp
                 TextureManager.cpp
                 TileLayer.cpp
                 Vector2D.cpp
-        Tile.cpp Tile.h TileCreator.cpp TileCreator.h Cursor.cpp Cursor.h CursorCreator.cpp CursorCreator.h Unit.cpp Unit.h Infantry.cpp Infantry.h InfantryCreator.cpp InfantryCreator.h UnitSelectedState.cpp UnitSelectedState.h)
+        Tile.cpp Tile.h TileCreator.cpp TileCreator.h Cursor.cpp Cursor.h CursorCreator.cpp CursorCreator.h Unit.cpp Unit.h Infantry.cpp Infantry.h InfantryCreator.cpp InfantryCreator.h UnitSelectedState.cpp UnitSelectedState.h TileGraph.cpp TileGraph.h)
 
 target_link_libraries(oboe ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${TINYXML_LIBRARIES} ${ZLIB_LIBRARIES})

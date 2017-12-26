@@ -48,6 +48,7 @@ std::vector<SDLGameObject*> PlayState::getObjectsAtCursor()
 
 void PlayState::render()
 {
+    m_tileGraph->draw();
 	for(int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
@@ -56,9 +57,14 @@ void PlayState::render()
 
 bool PlayState::onEnter()
 {
+    // Parse XML File (contains units and cursor)
 	StateParser stateParser;
 	stateParser.parseState("../conf/oboePlay.xml", s_playID, &m_gameObjects, &m_textureIDList);
 
+    // create the tileGraph.
+    m_tileGraph = new TileGraph(TheGame::instance()->getGameWidth(), TheGame::instance()->getGameHeight());
+
+    // TODO: find a more efficient way of storing the cursor. (probably don't even need it in XML)
     for(int i = 0; i < m_gameObjects.size(); i++)
     {
         SDLGameObject* SDLGameObjI =  dynamic_cast<SDLGameObject*>(m_gameObjects[i]);

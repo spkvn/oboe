@@ -8,6 +8,9 @@
 #include "Level.h"
 #include "LevelParser.h"
 #include "SDLGameObject.h"
+#include "TileGraph.h"
+
+class TileGraph;
 
 class PlayState : public GameState
 {
@@ -23,9 +26,8 @@ private:
 	static const std::string s_playID;
 	SDLGameObject* m_pCursor;
 	std::vector<GameObject*> m_gameObjects;
-
+    TileGraph* m_tileGraph;
     std::vector<SDLGameObject*> getObjectsAtCursor();
-
     void enterUnitSelectedState(std::vector<SDLGameObject*> v);
 };
 #endif//PLAY_STATE_H
