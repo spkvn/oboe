@@ -6,10 +6,11 @@
 
 const std::string UnitSelectedState::s_UnitSelectedID = "UNITSELECTED";
 
-UnitSelectedState::UnitSelectedState(std::vector<GameObject *> parentStateObjects, Unit* unit)
+UnitSelectedState::UnitSelectedState(std::vector<GameObject *> parentStateObjects, Unit* unit, TileGraph* t)
 {
     m_gameObjects = parentStateObjects;
     m_unit = unit;
+    m_tileGraph = t;
 }
 
 bool UnitSelectedState::onEnter()
@@ -36,7 +37,13 @@ bool UnitSelectedState::onEnter()
 
 void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
 {
-    Tile* l = tileLeft(x,y);
+    Tile* t = m_tileGraph->getTileAtXY(x/32,y/32);
+
+    Tile* l = t->getLeft();
+    Tile* r = t->getRight();
+    Tile* u = t->getUp();
+    Tile* d = t->getDown();
+
     if(l != NULL && currentDistance < m_unit->getMoveRange())
     {
         int lX = l->getPosition().getX();
@@ -49,7 +56,6 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
         }
     }
 
-    Tile* r = tileRight(x,y);
     if(r != NULL && currentDistance < m_unit->getMoveRange())
     {
         int rX = r->getPosition().getX();
@@ -62,7 +68,6 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
         }
     }
 
-    Tile* u = tileUp(x,y);
     if(u != NULL && currentDistance < m_unit->getMoveRange())
     {
         int uX = u->getPosition().getX();
@@ -75,7 +80,6 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
         }
     }
 
-    Tile* d = tileDown(x,y);
     if(d != NULL && currentDistance < m_unit->getMoveRange())
     {
         int dX = d->getPosition().getX();
@@ -89,96 +93,6 @@ void UnitSelectedState::recurseMoveRange(int x, int y,int currentDistance)
     }
 }
 
-bool UnitSelectedState::inMovables(Tile* tile)
-{
-    for(int i = 0; i < m_movableTiles.size(); i++)
-    {
-        if( m_movableTiles[i]->getPosition().getX() == tile->getPosition().getX()
-        &&  m_movableTiles[i]->getPosition().getY() == tile->getPosition().getY())
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-Tile* UnitSelectedState::tileLeft(int x, int y)
-{
-    for(int i = 0 ; i < m_gameObjects.size(); i++)
-    {
-        SDLGameObject* obj = dynamic_cast<SDLGameObject*>(m_gameObjects[i]);
-        if(obj->getPosition().getX() == x - 32)
-        {
-            if(obj->getPosition().getY() == y )
-            {
-                if (obj->getType() == "Tile")
-                {
-                    return (Tile*)obj;
-                }
-            }
-        }
-    }
-    return NULL;
-}
-
-Tile* UnitSelectedState::tileRight(int x, int y)
-{
-    for(int i = 0 ; i < m_gameObjects.size(); i++)
-    {
-        SDLGameObject* obj = dynamic_cast<SDLGameObject*>(m_gameObjects[i]);
-        if(obj->getPosition().getX() == x + 32)
-        {
-            if(obj->getPosition().getY() == y )
-            {
-                if (obj->getType() == "Tile")
-                {
-                    return (Tile*)obj;
-                }
-            }
-        }
-    }
-    return NULL;
-}
-
-Tile* UnitSelectedState::tileUp(int x, int y)
-{
-    for(int i = 0 ; i < m_gameObjects.size(); i++)
-    {
-        SDLGameObject* obj = dynamic_cast<SDLGameObject*>(m_gameObjects[i]);
-        if(obj->getPosition().getY() == y - 32)
-        {
-            if(obj->getPosition().getX() == x )
-            {
-                if (obj->getType() == "Tile")
-                {
-                    return (Tile*)obj;
-                }
-            }
-        }
-    }
-    return NULL;
-}
-
-
-Tile* UnitSelectedState::tileDown(int x, int y)
-{
-    for(int i = 0 ; i < m_gameObjects.size(); i++)
-    {
-        SDLGameObject* obj = dynamic_cast<SDLGameObject*>(m_gameObjects[i]);
-        if(obj->getPosition().getY() == y + 32)
-        {
-            if(obj->getPosition().getX() == x )
-            {
-                if (obj->getType() == "Tile")
-                {
-                    return (Tile*)obj;
-                }
-            }
-        }
-    }
-    return NULL;
-}
-
 bool UnitSelectedState::onExit()
 {
     //When a unit has been moved, attack? or finish, go back to previous state.
@@ -186,6 +100,9 @@ bool UnitSelectedState::onExit()
 
 void UnitSelectedState::update()
 {
+    if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_C)) {
+        TheGame::instance()->getStateMachine()->popState();
+    }
     //Check for updownleftright again, see draw path based on that.
 
     //if x, move unit and enter attack state
@@ -195,6 +112,8 @@ void UnitSelectedState::update()
 
 void UnitSelectedState::render()
 {
+    m_tileGraph->draw();
+
     for(int i = 0; i < m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->draw();

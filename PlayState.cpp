@@ -22,7 +22,7 @@ void PlayState::enterUnitSelectedState(std::vector<SDLGameObject*> v)
         std::string type = v[i]->getType();
         if(type == "Infantry" || type == "Unit"){
             Unit* u = dynamic_cast<Unit*>(v[i]);
-            TheGame::instance()->getStateMachine()->pushState(new UnitSelectedState(m_gameObjects,u));
+            TheGame::instance()->getStateMachine()->pushState(new UnitSelectedState(m_gameObjects,u,m_tileGraph));
         }
     }
 }
