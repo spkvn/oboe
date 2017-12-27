@@ -9,12 +9,13 @@
 #include "Game.h"
 
 class Tile;
+class Cursor;
 class TileGraph;
 
 class UnitSelectedState : public GameState
 {
 public:
-    UnitSelectedState(std::vector<GameObject*> parentStateObjects, Unit* unit, TileGraph* t);
+    UnitSelectedState(std::vector<GameObject*> parentStateObjects, Unit* unit, TileGraph* t, Cursor* cursor);
     virtual void update();
     virtual void render();
 
@@ -25,6 +26,7 @@ public:
 private:
     static const std::string s_UnitSelectedID;
     Unit* m_unit;
+    Cursor* m_cursor;
     TileGraph* m_tileGraph;
 
     std::vector<SDLGameObject*> m_movePath;

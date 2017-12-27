@@ -36,6 +36,16 @@ void Cursor::clean()
 
 }
 
+int Cursor::getX()
+{
+    return m_position.getX();
+}
+
+int Cursor::getY()
+{
+    return m_position.getY();
+}
+
 void Cursor::handleInput()
 {
     if( (keysPressed[Direction::Left] && !(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_LEFT)))){

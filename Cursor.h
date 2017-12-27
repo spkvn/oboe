@@ -22,6 +22,9 @@ public:
     virtual void update();
     virtual void clean();
 
+    int getX();
+    int getY();
+
 private:
     void handleInput();
     enum Direction {Left = 0, Up = 1, Right = 2, Down = 3};

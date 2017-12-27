@@ -6,7 +6,7 @@
 
 Infantry::Infantry() : Unit()
 {
-    m_moveRange = 3;
+    m_moveRange = 6;
 }
 
 void Infantry::load(const LoaderParams* pParams)

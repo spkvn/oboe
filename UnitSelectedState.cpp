@@ -6,10 +6,11 @@
 
 const std::string UnitSelectedState::s_UnitSelectedID = "UNITSELECTED";
 
-UnitSelectedState::UnitSelectedState(std::vector<GameObject *> parentStateObjects, Unit* unit, TileGraph* t)
+UnitSelectedState::UnitSelectedState(std::vector<GameObject *> parentStateObjects, Unit* unit, TileGraph* t, Cursor* cursor)
 {
     m_gameObjects = parentStateObjects;
     m_unit = unit;
+    m_cursor = cursor;
     m_tileGraph = t;
 }
 
@@ -100,9 +101,16 @@ bool UnitSelectedState::onExit()
 
 void UnitSelectedState::update()
 {
+    for(int i = 0; i < m_gameObjects.size(); i++)
+    {
+        m_gameObjects[i]->update();
+    }
+
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_C)) {
         TheGame::instance()->getStateMachine()->popState();
     }
+
+    // int cursorX = m_c
     //Check for updownleftright again, see draw path based on that.
 
     //if x, move unit and enter attack state
@@ -113,11 +121,6 @@ void UnitSelectedState::update()
 void UnitSelectedState::render()
 {
     m_tileGraph->draw();
-
-    for(int i = 0; i < m_gameObjects.size(); i++)
-    {
-        m_gameObjects[i]->draw();
-    }
 
     for(int i = 0; i < m_movableTiles.size(); i++)
     {
@@ -130,5 +133,10 @@ void UnitSelectedState::render()
                 TheGame::instance()->getRenderer(),
                 SDL_FLIP_NONE
         );
+    }
+
+    for(int i = 0; i < m_gameObjects.size(); i++)
+    {
+        m_gameObjects[i]->draw();
     }
 }
