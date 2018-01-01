@@ -34,6 +34,7 @@ private:
     std::vector<Tile*> m_movableTiles;
 
     void recurseMoveRange(int x, int y, int currentDistance);
+    bool isMovePositionValid();
 };
 
 

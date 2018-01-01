@@ -6,6 +6,8 @@
 #define OBOE_TILEGRAPH_H
 
 #include <vector>
+#include <limits>
+#include <algorithm>
 #include "Tile.h"
 
 class TileGraph
@@ -13,9 +15,11 @@ class TileGraph
 public:
     //create.
     TileGraph(int gameWidth, int gameHeight);
+    TileGraph(std::vector<std::vector<Tile*>> tTiles);
 
     //get the tiles.
     Tile* getTileAtXY(int x, int y);
+    void calculatePath(int srcX, int srcY, int destX, int destY);
 
     void draw();
     void update();

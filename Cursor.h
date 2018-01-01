@@ -11,6 +11,7 @@
 #include "InputHandler.h"
 #include "Game.h"
 
+class Tile;
 
 class Cursor : public SDLGameObject
 {
@@ -20,6 +21,7 @@ public:
 
     virtual void draw();
     virtual void update();
+    virtual void update(std::vector<Tile*> m_movableTiles);
     virtual void clean();
 
     int getX();
@@ -27,6 +29,7 @@ public:
 
 private:
     void handleInput();
+    void handleInputWhileSelected();
     enum Direction {Left = 0, Up = 1, Right = 2, Down = 3};
     bool keysPressed[4];
     int m_animSpeed;

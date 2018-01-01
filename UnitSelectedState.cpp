@@ -101,21 +101,39 @@ bool UnitSelectedState::onExit()
 
 void UnitSelectedState::update()
 {
-    for(int i = 0; i < m_gameObjects.size(); i++)
-    {
-        m_gameObjects[i]->update();
-    }
+    m_cursor->update(m_movableTiles);
 
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_C)) {
         TheGame::instance()->getStateMachine()->popState();
     }
 
-    // int cursorX = m_c
-    //Check for updownleftright again, see draw path based on that.
+    //if x, calculate path.
+    if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_X)){
+        if(isMovePositionValid()){
+            std::cout << "Destination determined to be valid" << std::endl;
+            m_tileGraph->calculatePath(m_unit->getPosition().getX(), m_unit->getPosition().getY(),m_cursor->getPosition().getX(),m_cursor->getPosition().getY());
+        }
+    }
+}
 
-    //if x, move unit and enter attack state
+bool UnitSelectedState::isMovePositionValid()
+{
+    bool valid = false;
 
-    //if y, popState
+    int cursorX = m_cursor->getPosition().getX();
+    int cursorY = m_cursor->getPosition().getY();
+
+    for(int i = 0; i < m_movableTiles.size(); i++)
+    {
+        int tileX = m_movableTiles[i]->getPosition().getX();
+        int tileY = m_movableTiles[i]->getPosition().getY();
+
+        if( cursorX == tileX && tileY == cursorY){
+            valid = true;
+        }
+    }
+
+    return valid;
 }
 
 void UnitSelectedState::render()
