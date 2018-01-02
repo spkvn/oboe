@@ -7,6 +7,7 @@
 Tile::Tile() : SDLGameObject()
 {
     m_type = "Tile";
+    movementCost = 1;
 }
 
 void Tile::load(const LoaderParams *pParams)
