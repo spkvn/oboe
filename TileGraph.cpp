@@ -32,9 +32,9 @@ TileGraph::TileGraph(int gameWidth, int gameHeight)
     mY--;
 
     //set all ajacent tiles.
-    for(int x = 0; x < mX; x++)
+    for(int x = 0; x <= mX; x++)
     {
-        for(int y = 0; y < mY; y++ )
+        for(int y = 0; y <= mY; y++ )
         {
             Tile* t = tiles[x][y];
 
@@ -42,7 +42,7 @@ TileGraph::TileGraph(int gameWidth, int gameHeight)
             t->setLeft(getTileAtXY(x-1,y));
             t->setRight(getTileAtXY(x+1,y));
             t->setUp(getTileAtXY(x,y-1));
-            t->setDown(tiles[x][y+1]);
+            t->setDown(getTileAtXY(x,y+1));
         }
     }
 
@@ -93,7 +93,7 @@ void TileGraph::update()
 
 /* State of this function:
     Now "Works" apart from all the segfaults in the removeIfHasBeenVisited lambda.
-    this is pretty frustrating tbqh. 
+    this is pretty frustrating tbqh.
  */
 void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
 {
@@ -261,6 +261,17 @@ void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
         }
     }
 
-    std::cout << "End of dijsktra" << std::endl;
+    std::cout << "End of dijsktra: Here's the path from destxy to sourcexy" << std::endl;
+
+    Tile* dest = getTileAtXY(destX/32,destY/32);
+    while(dest != nullptr)
+    {
+        int diX = dest->getPosition().getX()/32;
+        int diY = dest->getPosition().getY()/32;
+
+        std::cout << "(" << diX << "," << diY << "),";
+        dest = previous[diX][diY];
+    }
+    std::cout << "End of Previous Chain" << std::endl;
 }
 
