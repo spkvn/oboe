@@ -19,10 +19,13 @@ public:
 
     //get the tiles.
     Tile* getTileAtXY(int x, int y);
-    void calculatePath(int srcX, int srcY, int destX, int destY);
+    void calculatePath(int srcX, int srcY);
 
     void draw();
+    void draw(int destX, int destY);
     void update();
+
+    bool pathsCalculated(){return m_pathsCalculated;}
 private:
 
     //2D vector to store the tile grid.
@@ -31,6 +34,10 @@ private:
     // x and y of tilegraph.
     int mX;
     int mY;
+
+    // dijkstra vars
+    bool m_pathsCalculated;
+    std::vector<std::vector<Tile*>> previousTiles;
 };
 
 

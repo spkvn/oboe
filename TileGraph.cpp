@@ -6,6 +6,7 @@
 
 TileGraph::TileGraph(int gameWidth, int gameHeight)
 {
+    m_pathsCalculated = false;
     // 32 is tile size.
     mX = gameWidth/32;
     mY = gameHeight/32;
@@ -86,16 +87,41 @@ void TileGraph::draw()
     }
 }
 
+void TileGraph::draw(int destX, int destY)
+{
+    for(int x = 0; x <= mX; x++)
+    {
+        for(int y = 0; y <= mY; y++ )
+        {
+            tiles[x][y]->draw();
+        }
+    }
+
+    Tile* dest = getTileAtXY(destX/32, destY/32);
+    while(dest != nullptr)
+    {
+        int dX = dest->getPosition().getX();
+        int dY = dest->getPosition().getY();
+
+        TheTextureManager::instance()->draw(
+                "aVertical",
+                dX,
+                dY,
+                32,
+                32,
+                TheGame::instance()->getRenderer(),
+                SDL_FLIP_NONE
+        );
+        dest = previousTiles[dX/32][dY/32];
+    }
+}
+
 void TileGraph::update()
 {
 
 }
 
-/* State of this function:
-    Now "Works" apart from all the segfaults in the removeIfHasBeenVisited lambda.
-    this is pretty frustrating tbqh.
- */
-void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
+void TileGraph::calculatePath(int srcX, int srcY)
 {
     //effective infinity, as the max of an int.
     int infinity = std::numeric_limits<int>::max();
@@ -122,7 +148,6 @@ void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
 
         for(int y = 0; y < tiles[x].size(); y++)
         {
-//            std::cout << "Initializing for loop ("<<x<<","<<y<<")" << std::endl;
             //get it's x/y values
             int iterX = tiles[x][y]->getPosition().getX();
             int iterY = tiles[x][y]->getPosition().getY();
@@ -132,7 +157,6 @@ void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
                 distances[x][y] = infinity;
             }else{
                 //this is the source, distance set to 0;
-                std::cout << "source identified as ("<<x<<","<<y<<")"<<std::endl;
                 distances[x][y] = 0;
             }
 
@@ -166,9 +190,6 @@ void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
                     });
 
                     if(it != unvisited.end()){
-                        std::cout << "(" << x << "," << y << ") determined to be lowest with a cost of " << distances[x][y]
-                                  << std::endl;
-
                         //set the new lowest
                         lowest = distances[x][y];
 
@@ -189,25 +210,13 @@ void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
         //remove from unvisited
         auto removeIfMatches = std::remove_if(unvisited.begin(), unvisited.end(), [vX, vY](Tile *t) {
             bool match = (t->getPosition().getX() == vX && t->getPosition().getY() == vY);
-            if (match) {
-                std::cout << "match found, removing tile at (" << vX << "," << vY << ")" << std::endl;
-            }else{
-                /*std::cout << "no match" << std::endl
-                        << "t.x" << t->getPosition().getX() << std::endl
-                        << "v.x" << vX << std::endl
-                        << "t.y" << t->getPosition().getY() << std::endl
-                        << "v.y" << vY << std::endl;*/
-            }
             return match;
         });
 
         unvisited.erase(removeIfMatches, unvisited.end());
-        std::cout << "Unvisited remaining: " << unvisited.size() << std::endl;
 
         vX = vX/32;
         vY = vY/32;
-
-        std::cout << "Processing the neighbours of ("<<vX<<","<<vY<<")"<<std::endl;
 
         //for each neighbour of v
         std::vector<Tile*> vNeighbours;
@@ -263,15 +272,19 @@ void TileGraph::calculatePath(int srcX, int srcY, int destX, int destY)
 
     std::cout << "End of dijsktra: Here's the path from destxy to sourcexy" << std::endl;
 
-    Tile* dest = getTileAtXY(destX/32,destY/32);
-    while(dest != nullptr)
-    {
-        int diX = dest->getPosition().getX()/32;
-        int diY = dest->getPosition().getY()/32;
+    m_pathsCalculated = true;
+    previousTiles = previous;
 
-        std::cout << "(" << diX << "," << diY << "),";
-        dest = previous[diX][diY];
-    }
-    std::cout << "End of Previous Chain" << std::endl;
+
+//    Tile* dest = getTileAtXY(destX/32,destY/32);
+//    while(dest != nullptr)
+//    {
+//        int diX = dest->getPosition().getX()/32;
+//        int diY = dest->getPosition().getY()/32;
+//
+//        std::cout << ",(" << diX << "," << diY << ")";
+//        dest = previous[diX][diY];
+//    }
+//    std::cout << ";" << std::endl;
 }
 

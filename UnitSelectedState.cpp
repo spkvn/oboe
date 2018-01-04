@@ -31,7 +31,14 @@ bool UnitSelectedState::onEnter()
     TheTextureManager::instance()->load("../assets/arrows/aVertical.png",    "aVertical", TheGame::instance()->getRenderer());
     TheTextureManager::instance()->load("../assets/arrows/aHorizontal.png",  "aHorizontal", TheGame::instance()->getRenderer());
 
+    // find move range
     recurseMoveRange(m_unit->getPosition().getX(), m_unit->getPosition().getY(), 1);
+
+//    //remove duplicates (sorry im bad at coding)
+//    m_movableTiles.erase(std::unique(m_movableTiles.begin(),m_movableTiles.end(),m_movableTiles.end()));
+
+    // find path from selected unit to each tile.
+    m_tileGraph->calculatePath(m_unit->getPosition().getX(), m_unit->getPosition().getY());
 
     std::cout << "Entering Unit Selected State" << std::endl;
 }
@@ -111,7 +118,6 @@ void UnitSelectedState::update()
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_X)){
         if(isMovePositionValid()){
             std::cout << "Destination determined to be valid" << std::endl;
-            m_tileGraph->calculatePath(m_unit->getPosition().getX(), m_unit->getPosition().getY(),m_cursor->getPosition().getX(),m_cursor->getPosition().getY());
         }
     }
 }
@@ -138,7 +144,7 @@ bool UnitSelectedState::isMovePositionValid()
 
 void UnitSelectedState::render()
 {
-    m_tileGraph->draw();
+    m_tileGraph->draw(m_cursor->getPosition().getX(), m_cursor->getPosition().getY());
 
     for(int i = 0; i < m_movableTiles.size(); i++)
     {
