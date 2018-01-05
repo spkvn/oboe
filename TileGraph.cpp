@@ -178,8 +178,9 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
                 {
                     if(currentX > lastX)
                     {
-                        //from left to down
-                        tileName = "aHorizontal";
+                        //from up to left
+                        // SPECULATION: couldn't trigger this in game.
+                        tileName = "aDown";
                     }
                     else if (currentX < lastX)
                     {
@@ -191,8 +192,9 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
                 {
                     if(currentX > lastX)
                     {
-                        //from left to up
-                        tileName = "aHorizontal";
+                        //from down to left
+                        // SPECULATION, couldn't trigger it in game.
+                        tileName = "aLeft";
                     }
                     else if (currentX < lastX)
                     {
