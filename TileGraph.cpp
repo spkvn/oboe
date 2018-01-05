@@ -116,8 +116,6 @@ void TileGraph::drawPath(int destX, int destY)
 
 void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
 {
-    // jesus christ.
-    // if the next one is
     std::string tileName = "aEndUp";
     int currentX = currentTile->getPosition().getX();
     int currentY = currentTile->getPosition().getY();
@@ -134,22 +132,22 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
             if(nX < currentX)
             {
                 //left end
-                tileName = "aEndLeft";
+                tileName = "aEndRight";
             }
             else if(nX > currentX)
             {
                 //right end
-                tileName = "aEndRight";
+                tileName = "aEndLeft";
             }
             else if(nY > currentY)
             {
                 //down end
-                tileName = "aEndDown";
+                tileName = "aEndUp";
             }
             else if(nY < currentY)
             {
                 //up end
-                tileName = "aEndUp";
+                tileName = "aEndDown";
             }
         }
         else
