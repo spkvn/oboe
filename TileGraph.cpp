@@ -179,12 +179,12 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
                     if(currentX > lastX)
                     {
                         //from left to down
-                        tileName = "aLeft";
+                        tileName = "aHorizontal";
                     }
                     else if (currentX < lastX)
                     {
-                        //from right to down
-                        tileName = "aRight";
+                        //from up to right
+                        tileName = "aUp";
                     }
                 }
                 else if(currentY < nextY) //corner up
@@ -192,12 +192,12 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
                     if(currentX > lastX)
                     {
                         //from left to up
-                        tileName = "aDown";
+                        tileName = "aHorizontal";
                     }
                     else if (currentX < lastX)
                     {
-                        //from right to up
-                        tileName = "aUp";
+                        //from down to right
+                        tileName = "aRight";
                     }
                 }
             }
@@ -207,13 +207,13 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
                 {
                     if(currentY > lastY)
                     {
-                        //from right to down
-                        tileName ="aVertical";
+                        //from right to up
+                        tileName ="aUp";
                     }
                     else if (currentY < lastY )
                     {
-                        //from right to up
-                        tileName ="aVertical";
+                        //from right to down
+                        tileName ="aRight";
                     }
                 }
                 else if ( currentX > nextX) // corner left
