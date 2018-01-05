@@ -87,16 +87,8 @@ void TileGraph::draw()
     }
 }
 
-void TileGraph::draw(int destX, int destY)
+void TileGraph::drawPath(int destX, int destY)
 {
-    for(int x = 0; x <= mX; x++)
-    {
-        for(int y = 0; y <= mY; y++ )
-        {
-            tiles[x][y]->draw();
-        }
-    }
-
     Tile* dest = getTileAtXY(destX/32, destY/32);
     while(dest != nullptr)
     {

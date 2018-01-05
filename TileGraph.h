@@ -22,7 +22,7 @@ public:
     void calculatePath(int srcX, int srcY);
 
     void draw();
-    void draw(int destX, int destY);
+    void drawPath(int destX, int destY);
     void update();
 
     bool pathsCalculated(){return m_pathsCalculated;}

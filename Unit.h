@@ -19,6 +19,7 @@ public:
 
     std::string getType();
     int getMoveRange();
+
 protected:
     int m_moveRange;
 };

@@ -34,9 +34,6 @@ bool UnitSelectedState::onEnter()
     // find move range
     recurseMoveRange(m_unit->getPosition().getX(), m_unit->getPosition().getY(), 1);
 
-//    //remove duplicates (sorry im bad at coding)
-//    m_movableTiles.erase(std::unique(m_movableTiles.begin(),m_movableTiles.end(),m_movableTiles.end()));
-
     // find path from selected unit to each tile.
     m_tileGraph->calculatePath(m_unit->getPosition().getX(), m_unit->getPosition().getY());
 
@@ -118,6 +115,7 @@ void UnitSelectedState::update()
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_X)){
         if(isMovePositionValid()){
             std::cout << "Destination determined to be valid" << std::endl;
+            //move to tile, how the hell do you move again? lol
         }
     }
 }
@@ -144,7 +142,7 @@ bool UnitSelectedState::isMovePositionValid()
 
 void UnitSelectedState::render()
 {
-    m_tileGraph->draw(m_cursor->getPosition().getX(), m_cursor->getPosition().getY());
+    m_tileGraph->draw();
 
     for(int i = 0; i < m_movableTiles.size(); i++)
     {
@@ -157,6 +155,10 @@ void UnitSelectedState::render()
                 TheGame::instance()->getRenderer(),
                 SDL_FLIP_NONE
         );
+    }
+
+    if(isMovePositionValid()){
+        m_tileGraph->drawPath(m_cursor->getPosition().getX(), m_cursor->getPosition().getY());
     }
 
     for(int i = 0; i < m_gameObjects.size(); i++)
