@@ -235,11 +235,11 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
             {
                 if(currentX != nextX)
                 {
-                    tileName ="aVertical";
+                    tileName ="aHorizontal";
                 }
                 else
                 {
-                    tileName = "aHorizontal";
+                    tileName = "aVertical";
                 }
             }
         }
@@ -248,11 +248,11 @@ void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
             //(only ever going to be horizontal / vertical )
             if(currentX != lastX ) //if the x is not equal, then it's either greater or less than
             {
-                tileName = "aVertical";
+                tileName = "aHorizontal";
             }
             else
             {
-                tileName = "aHorizontal";
+                tileName = "aVertical";
             }
         }
     }
