@@ -38,6 +38,9 @@ private:
     // dijkstra vars
     bool m_pathsCalculated;
     std::vector<std::vector<Tile*>> previousTiles;
+
+    void drawPathElement(Tile* t, Tile* lastTile);
+
 };
 
 

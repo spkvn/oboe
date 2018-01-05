@@ -90,22 +90,184 @@ void TileGraph::draw()
 void TileGraph::drawPath(int destX, int destY)
 {
     Tile* dest = getTileAtXY(destX/32, destY/32);
+
+    Tile* last = nullptr;
+
     while(dest != nullptr)
     {
         int dX = dest->getPosition().getX();
         int dY = dest->getPosition().getY();
 
-        TheTextureManager::instance()->draw(
-                "aVertical",
-                dX,
-                dY,
-                32,
-                32,
-                TheGame::instance()->getRenderer(),
-                SDL_FLIP_NONE
-        );
+//        TheTextureManager::instance()->draw(
+//                "aVertical",
+//                dX,
+//                dY,
+//                32,
+//                32,
+//                TheGame::instance()->getRenderer(),
+//                SDL_FLIP_NONE
+//        );
+
+        drawPathElement(dest,last);
+        last = dest;
         dest = previousTiles[dX/32][dY/32];
     }
+}
+
+void TileGraph::drawPathElement(Tile* currentTile, Tile* lastTile)
+{
+    // jesus christ.
+    // if the next one is
+    std::string tileName = "aEndUp";
+    int currentX = currentTile->getPosition().getX();
+    int currentY = currentTile->getPosition().getY();
+
+
+    if(lastTile == nullptr)
+    {
+        Tile* nextTile = previousTiles[currentX/32][currentY/32];
+        if(nextTile!=nullptr)
+        {
+            int nX = nextTile->getPosition().getX();
+            int nY = nextTile->getPosition().getY();
+
+            if(nX < currentX)
+            {
+                //left end
+                tileName = "aEndLeft";
+            }
+            else if(nX > currentX)
+            {
+                //right end
+                tileName = "aEndRight";
+            }
+            else if(nY > currentY)
+            {
+                //down end
+                tileName = "aEndDown";
+            }
+            else if(nY < currentY)
+            {
+                //up end
+                tileName = "aEndUp";
+            }
+        }
+        else
+        {
+            //it's the only one in the path, either
+            //1) compare against unit xy
+            //2) guess lol.
+            tileName="aEndUp";
+        }
+    }
+    else
+    {
+
+        int lastX    = lastTile->getPosition().getX();
+        int lastY    = lastTile->getPosition().getY();
+
+        Tile* nextTile = previousTiles[currentX/32][currentY/32];
+
+        //if next tile is not source.
+        if(nextTile != nullptr)
+        {
+            int nextX = nextTile->getPosition().getX();
+            int nextY = nextTile->getPosition().getY();
+
+            if(currentY == lastY && nextY != currentY) // corner up/down
+            {
+                if(currentY > nextY)    // corner down
+                {
+                    if(currentX > lastX)
+                    {
+                        //from left to down
+                        tileName = "aLeft";
+                    }
+                    else if (currentX < lastX)
+                    {
+                        //from right to down
+                        tileName = "aRight";
+                    }
+                }
+                else if(currentY < nextY) //corner up
+                {
+                    if(currentX > lastX)
+                    {
+                        //from left to up
+                        tileName = "aDown";
+                    }
+                    else if (currentX < lastX)
+                    {
+                        //from right to up
+                        tileName = "aUp";
+                    }
+                }
+            }
+            else if(currentX == lastX && currentX != nextX) //corner left/right
+            {
+                if(currentX < nextX) // corner right
+                {
+                    if(currentY > lastY)
+                    {
+                        //from right to down
+                        tileName ="aVertical";
+                    }
+                    else if (currentY < lastY )
+                    {
+                        //from right to up
+                        tileName ="aVertical";
+                    }
+                }
+                else if ( currentX > nextX) // corner left
+                {
+                    if(currentY > lastY)
+                    {
+                        //from left to down
+                        tileName ="aLeft";
+                    }
+                    else if(currentY < lastY)
+                    {
+                        //from left to up
+                        tileName ="aDown";
+                    }
+                }
+            }
+            //else , do standard if / else for left/right/up/down
+            else
+            {
+                if(currentX != nextX)
+                {
+                    tileName ="aVertical";
+                }
+                else
+                {
+                    tileName = "aHorizontal";
+                }
+            }
+        }
+        else //if the next tile is source
+        {
+            //(only ever going to be horizontal / vertical )
+            if(currentX != lastX ) //if the x is not equal, then it's either greater or less than
+            {
+                tileName = "aVertical";
+            }
+            else
+            {
+                tileName = "aHorizontal";
+            }
+        }
+    }
+
+    TheTextureManager::instance()->draw(
+            tileName,
+            currentX,
+            currentY,
+            32,
+            32,
+            TheGame::instance()->getRenderer(),
+            SDL_FLIP_NONE
+    );
 }
 
 void TileGraph::update()
@@ -262,21 +424,9 @@ void TileGraph::calculatePath(int srcX, int srcY)
         }
     }
 
-    std::cout << "End of dijsktra: Here's the path from destxy to sourcexy" << std::endl;
+    std::cout << "End of dijsktra." << std::endl;
 
     m_pathsCalculated = true;
     previousTiles = previous;
-
-
-//    Tile* dest = getTileAtXY(destX/32,destY/32);
-//    while(dest != nullptr)
-//    {
-//        int diX = dest->getPosition().getX()/32;
-//        int diY = dest->getPosition().getY()/32;
-//
-//        std::cout << ",(" << diX << "," << diY << ")";
-//        dest = previous[diX][diY];
-//    }
-//    std::cout << ";" << std::endl;
 }
 
