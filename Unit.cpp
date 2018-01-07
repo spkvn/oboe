@@ -54,34 +54,31 @@ void Unit::moveToPathElement()
 
     if(nX > cX) //next is right
     {
-        m_velocity += Vector2D(0.1,0);
-//        std::cout << "moving " << m_type << " right"  << std::endl;
+        m_velocity.setX(2);
     }
     else if (nX < cX) // next is left
     {
-        m_velocity += Vector2D(-0.1,0);
-//        std::cout << "moving " << m_type << " left"  << std::endl;
+        m_velocity.setX(-2);
     }
     else if( nY > cY) //next is down
     {
-        m_velocity += Vector2D(0,0.1);
-//        std::cout << "moving " << m_type << " down"  << std::endl;
+        m_velocity.setY(2);
     }
     else if (nY < cY) //next is up
     {
-        m_velocity += Vector2D(0,-0.1);
-//        std::cout << "moving " << m_type << " up"  << std::endl;
+        m_velocity.setY(-2);
     }
 
     if(nX == cX && nY == cY)
     {
-        std::cout << "unit moved to next, popping from stack " << std::endl;
         m_velocity = Vector2D(0,0);
         m_movePath.pop();
     }
 
     if(m_movePath.empty())
     {
+        m_velocity.setX(0);
+        m_velocity.setY(0);
         m_movePathSet = false;
     }
 }
