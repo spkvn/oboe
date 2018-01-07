@@ -29,7 +29,7 @@ void SDLGameObject::load(const LoaderParams* pParams)
 
 void SDLGameObject::draw()
 {
-	if(m_velocity.getX() > 0)
+	if(m_velocity.getX() < 0)
 	{
 		TheTextureManager::instance()->drawFrame(
 			m_textureID,
