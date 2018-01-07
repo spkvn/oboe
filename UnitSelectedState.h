@@ -5,6 +5,8 @@
 #ifndef OBOE_UNITSELECTEDSTATE_H
 #define OBOE_UNITSELECTEDSTATE_H
 
+#include <stack>
+
 #include "GameState.h"
 #include "Game.h"
 

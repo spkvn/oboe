@@ -19,6 +19,8 @@ public:
 
     //get the tiles.
     Tile* getTileAtXY(int x, int y);
+    Tile* getPrevious(int x, int y);
+
     void calculatePath(int srcX, int srcY);
 
     void draw();

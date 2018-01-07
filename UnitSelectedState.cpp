@@ -114,8 +114,28 @@ void UnitSelectedState::update()
     //if x, calculate path.
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_X)){
         if(isMovePositionValid()){
-            std::cout << "Destination determined to be valid" << std::endl;
-            //move to tile, how the hell do you move again? lol
+            std::cout << "move is valid, move the unit to that xy" << std::endl;
+
+            //get cursor xy
+            int cursX = (int) m_cursor->getPosition().getX();
+            int cursY = (int) m_cursor->getPosition().getY();
+
+            //get tile at cursor xy.
+            Tile* currentTile = m_tileGraph->getTileAtXY(cursX/32,cursY/32);
+            std::stack<Tile*> positions;
+
+            while(currentTile != nullptr)
+            {
+                positions.push(currentTile);
+                currentTile = m_tileGraph->getPrevious(currentTile->getPosition().getX()/32, currentTile->getPosition().getY()/32);
+            }
+
+            while(!positions.empty())
+            {
+                std::cout << "(x:"<<positions.top()->getPosition().getX()<<",y:"<<positions.top()->getPosition().getY()<<"),";
+                positions.pop();
+            }
+            std::cout << std::endl;
         }
     }
 }

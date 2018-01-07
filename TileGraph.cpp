@@ -76,6 +76,18 @@ Tile* TileGraph::getTileAtXY(int x, int y)
     }
 }
 
+Tile* TileGraph::getPrevious(int x, int y)
+{
+    if(pathsCalculated())
+    {
+        return previousTiles[x][y];
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+
 void TileGraph::draw()
 {
     for(int x = 0; x <= mX; x++)
@@ -97,16 +109,6 @@ void TileGraph::drawPath(int destX, int destY)
     {
         int dX = dest->getPosition().getX();
         int dY = dest->getPosition().getY();
-
-//        TheTextureManager::instance()->draw(
-//                "aVertical",
-//                dX,
-//                dY,
-//                32,
-//                32,
-//                TheGame::instance()->getRenderer(),
-//                SDL_FLIP_NONE
-//        );
 
         drawPathElement(dest,last);
         last = dest;
