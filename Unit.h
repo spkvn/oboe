@@ -5,7 +5,11 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#include <stack>
+
 #include "SDLGameObject.h"
+
+class Tile;
 
 class Unit : public SDLGameObject
 {
@@ -20,8 +24,14 @@ public:
     std::string getType();
     int getMoveRange();
 
+    void setMovePath(std::stack<Tile*> movePath);
+
 protected:
+    void moveToPathElement();
+
     int m_moveRange;
+    std::stack<Tile*> m_movePath;
+    bool m_movePathSet;
 };
 
 #endif //UNIT_H

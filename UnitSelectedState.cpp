@@ -106,6 +106,7 @@ bool UnitSelectedState::onExit()
 void UnitSelectedState::update()
 {
     m_cursor->update(m_movableTiles);
+    m_unit->update();
 
     if(TheInputHandler::instance()->isKeyDown(SDL_SCANCODE_C)) {
         TheGame::instance()->getStateMachine()->popState();
@@ -120,22 +121,36 @@ void UnitSelectedState::update()
             int cursX = (int) m_cursor->getPosition().getX();
             int cursY = (int) m_cursor->getPosition().getY();
 
+            //get unit xy
+            int unitX = (int) m_unit->getPosition().getX();
+            int unitY = (int) m_unit->getPosition().getY();
+
             //get tile at cursor xy.
             Tile* currentTile = m_tileGraph->getTileAtXY(cursX/32,cursY/32);
             std::stack<Tile*> positions;
 
             while(currentTile != nullptr)
             {
-                positions.push(currentTile);
+//                int currX = (int) currentTile->getPosition().getX();
+//                int currY = (int) currentTile->getPosition().getY();
+//
+//                if( currX != unitX && currY != unitY)
+//                {
+                    positions.push(currentTile);
+//                }
+
                 currentTile = m_tileGraph->getPrevious(currentTile->getPosition().getX()/32, currentTile->getPosition().getY()/32);
             }
 
-            while(!positions.empty())
-            {
-                std::cout << "(x:"<<positions.top()->getPosition().getX()<<",y:"<<positions.top()->getPosition().getY()<<"),";
-                positions.pop();
-            }
-            std::cout << std::endl;
+//            while(!positions.empty())
+//            {
+//                std::cout << "(x:"<<positions.top()->getPosition().getX()<<",y:"<<positions.top()->getPosition().getY()<<"),";
+//                positions.pop();
+//            }
+//            std::cout << std::endl;
+//
+            m_unit->setMovePath(positions);
+
         }
     }
 }
