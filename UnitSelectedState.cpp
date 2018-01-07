@@ -131,26 +131,12 @@ void UnitSelectedState::update()
 
             while(currentTile != nullptr)
             {
-//                int currX = (int) currentTile->getPosition().getX();
-//                int currY = (int) currentTile->getPosition().getY();
-//
-//                if( currX != unitX && currY != unitY)
-//                {
-                    positions.push(currentTile);
-//                }
+                positions.push(currentTile);
 
                 currentTile = m_tileGraph->getPrevious(currentTile->getPosition().getX()/32, currentTile->getPosition().getY()/32);
             }
 
-//            while(!positions.empty())
-//            {
-//                std::cout << "(x:"<<positions.top()->getPosition().getX()<<",y:"<<positions.top()->getPosition().getY()<<"),";
-//                positions.pop();
-//            }
-//            std::cout << std::endl;
-//
             m_unit->setMovePath(positions);
-
         }
     }
 }
